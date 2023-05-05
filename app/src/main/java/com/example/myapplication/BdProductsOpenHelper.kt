@@ -13,6 +13,9 @@ class BdProductsOpenHelper(context: Context?)
      * @param db The database.
      */
     override fun onCreate(db: SQLiteDatabase?) {
+        requireNotNull(db)
+        TabelaProdutos(db).cria()
+        TabelaStock(db).cria()
 
     }
 
