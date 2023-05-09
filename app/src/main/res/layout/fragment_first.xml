@@ -17,30 +17,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:backgroundTint="@color/orange"
             android:text="@string/stock"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/Products"
             app:layout_constraintStart_toStartOf="@+id/Products"
-            app:layout_constraintTop_toBottomOf="@+id/Products" />
+            app:layout_constraintTop_toBottomOf="@+id/Products"
+            tools:ignore="TextContrastCheck" />
 
         <Button
             android:id="@+id/button_first"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:backgroundTint="@color/orange"
             android:text="@string/about"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextContrastCheck" />
 
         <Button
             android:id="@+id/Products"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:backgroundTint="@color/orange"
             android:text="@string/products"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/button_first"
             app:layout_constraintStart_toStartOf="@+id/button_first"
-            app:layout_constraintTop_toBottomOf="@+id/button_first" /><![CDATA[
+            app:layout_constraintTop_toBottomOf="@+id/button_first"
+            tools:ignore="TextContrastCheck" /><![CDATA[
 
 
 
