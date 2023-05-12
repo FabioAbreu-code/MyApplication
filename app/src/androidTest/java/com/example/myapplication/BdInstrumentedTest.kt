@@ -207,4 +207,48 @@ class BdInstrumentedTest {
 
         db.close()
     }
+
+    @Test
+    fun consegueAlterarStock() {
+        val db = getWritableDatabase()
+
+
+        val produto = Produtos("Conservar a -18ºC. Contém Trigo. Pode conter vestígios de Ovos.", "Nuggets de Frango emb. 208 gr (10 un)")
+        insereProduto(db, produto)
+
+        val stock = Stock(1,produto.id,12052023)
+        insereStock(db, stock)
+
+        stock.quantidade = 2
+        stock.data = 13052023
+
+        val registosAlterados = TabelaStock(db).altera(
+            stock.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${stock.id}"))
+
+        assertEquals(1,registosAlterados)
+
+        db.close()
+    }
+
+    @Test
+    fun consegueAlterarProduto() {
+        val db = getWritableDatabase()
+
+
+        val produto = Produtos("Armazenar em local fresco e seco. Proteger dos raios solares.", "Cuétara, Bolachas Maria emb. 800gr (4 un)")
+        insereProduto(db, produto)
+
+        produto.nome = "Cuétara, Bolachas Maria emb. 400gr (2 un)"
+
+        val registosAlterados = TabelaProdutos(db).altera(
+            produto.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${produto.id}"))
+
+        assertEquals(1,registosAlterados)
+
+        db.close()
+    }
 }
