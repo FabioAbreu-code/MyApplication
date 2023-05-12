@@ -45,9 +45,6 @@
     </string>
     <string name="categories">Categories</string>
     <string name="about">About</string>
-    <string name="product">Product</string>
-    <string name="supplier">Supplier</string>
-    <string name="products">Products</string>
-    <string name="suppliers">Suppliers</string>
+    <string name="products">Household Consumer Goods</string>
     <string name="stock">Stock</string>
 </resources>
