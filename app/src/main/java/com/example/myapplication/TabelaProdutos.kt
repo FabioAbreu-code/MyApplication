@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.database.sqlite.SQLiteDatabase
+import android.provider.BaseColumns
 
 
 class TabelaProdutos(db: SQLiteDatabase) : TabelaBD(db, NOME_TABELA) {
@@ -12,5 +13,9 @@ class TabelaProdutos(db: SQLiteDatabase) : TabelaBD(db, NOME_TABELA) {
         const val NOME_TABELA = "produtos"
         const val CAMPO_NOME = "nome"
         const val CAMPO_DESCRICAO_PRODUTO = "descricao_do_produto"
+
+        val CAMPOS = arrayOf(BaseColumns._ID, CAMPO_NOME, CAMPO_DESCRICAO_PRODUTO)
+
     }
+
 }

@@ -13,7 +13,7 @@ abstract class TabelaBD(val db: SQLiteDatabase, val nome: String) {
 
     fun consulta(
         colunas: Array<String>,
-        selecao: String,
+        selecao: String?,
         argsSelecao: Array<String>?,
         groupby: String?,
         having: String?,

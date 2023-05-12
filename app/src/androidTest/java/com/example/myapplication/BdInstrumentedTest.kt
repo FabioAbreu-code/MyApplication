@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.database.sqlite.SQLiteDatabase
+import android.provider.BaseColumns
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
@@ -86,6 +87,40 @@ class BdInstrumentedTest {
         insereStock(bd, stock3)
     }
 
+    @Test
+    fun consegueLerProdutos(){
+        val bd = getWritableDatabase()
 
+        val produto1 = Produtos("Conservar em local fresco e seco.","Arroz Basmati 1kg Continente")
+        insereProduto(bd, produto1)
 
+        val tabelaProdutos = TabelaProdutos(bd)
+
+        val cursor = tabelaProdutos.consulta(
+            TabelaProdutos.CAMPOS,
+            "${BaseColumns._ID}=?",
+            arrayOf(produto1.id.toString()),
+            null,
+            null,
+            null
+            )
+
+        assert(cursor.moveToNext())
+
+        val produtoBD = Produtos.fromCursor(cursor)
+
+        assertEquals(produto1, produtoBD)
+
+        val cursorTodosProdutos = tabelaProdutos.consulta(
+            TabelaProdutos.CAMPOS,
+            null,
+            null,
+            null,
+            null,
+            TabelaProdutos.CAMPO_NOME
+        )
+
+        assert(cursorTodosProdutos.count > 0)
+
+    }
 }
