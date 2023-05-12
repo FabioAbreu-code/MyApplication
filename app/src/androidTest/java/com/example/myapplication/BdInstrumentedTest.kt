@@ -172,4 +172,39 @@ class BdInstrumentedTest {
         assert(cursorTodoStock.count > 1)
 
     }
+
+    @Test
+    fun  consegueEliminarStock() {
+        val db = getWritableDatabase()
+
+        val produto = Produtos("Lava Tudo Lavanda com tecnologia extra brilho oferece uma limpeza profunda com uma fragrância intensa dando um brilho único às superfícies.", "Sonasol, Lava Tudo Perfumado Lavanda 3lt")
+        insereProduto(db, produto)
+
+        val stock = Stock(0,produto.id,12052023)
+        insereStock(db, stock)
+
+        val registosEliminados = TabelaStock(db).elimina(
+            "${BaseColumns._ID}=?",
+            arrayOf("${stock.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
+    @Test
+    fun  consegueEliminarProdutos() {
+        val db = getWritableDatabase()
+
+        val produto = Produtos("Manter fora do alcance das crianças. Armazenar afastado de alimentos ou bebidas. Provoca irritação ocular.", "Detergente Manual Loiça Limão 1lt Continente")
+        insereProduto(db, produto)
+
+        val registosEliminados = TabelaProdutos(db).elimina(
+            "${BaseColumns._ID}=?",
+            arrayOf("${produto.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
 }
