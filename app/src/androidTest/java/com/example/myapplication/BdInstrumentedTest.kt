@@ -94,6 +94,9 @@ class BdInstrumentedTest {
         val produto1 = Produtos("Conservar em local fresco e seco.","Arroz Basmati 1kg Continente")
         insereProduto(bd, produto1)
 
+        val produto2 = Produtos("Conservar em local fresco e seco ao abrigo da luz.","Ice Tea Pêssego 2lt Continente")
+        insereProduto(bd, produto2)
+
         val tabelaProdutos = TabelaProdutos(bd)
 
         val cursor = tabelaProdutos.consulta(
@@ -120,7 +123,53 @@ class BdInstrumentedTest {
             TabelaProdutos.CAMPO_NOME
         )
 
-        assert(cursorTodosProdutos.count > 0)
+        assert(cursorTodosProdutos.count > 1)
+
+    }
+
+    @Test
+    fun consegueLerStock(){
+        val bd = getWritableDatabase()
+
+        val produto1 = Produtos("Conservar num local fresco e seco.","Massa Esparguete 500gr Continente")
+        insereProduto(bd, produto1)
+
+        val stock1 = Stock(2,produto1.id, 12052023)
+        insereStock(bd, stock1)
+
+        val produto2 = Produtos("Local fresco e seco. Depois de aberto, colocar no frigorífico e consumir de preferência no prazo de 3 dias.","Nata UHT para Culinária 200ml Continente")
+        insereProduto(bd, produto2)
+
+        val stock2 = Stock(1,produto2.id, 12052023)
+        insereStock(bd, stock2)
+
+        val tabelaStock = TabelaStock(bd)
+
+        val cursor = tabelaStock.consulta(
+            TabelaStock.CAMPOS,
+            "${BaseColumns._ID}=?",
+            arrayOf(stock1.id.toString()),
+            null,
+            null,
+            null
+        )
+
+        assert(cursor.moveToNext())
+
+        val stockBD = Stock.fromCursor(cursor)
+
+        assertEquals(stock1, stockBD)
+
+        val cursorTodoStock = tabelaStock.consulta(
+            TabelaStock.CAMPOS,
+            null,
+            null,
+            null,
+            null,
+            TabelaStock.CAMPO_QUANTIDADE
+        )
+
+        assert(cursorTodoStock.count > 1)
 
     }
 }

@@ -15,5 +15,6 @@ class TabelaStock(db: SQLiteDatabase) : TabelaBD(db, NOME_TABELA) {
         const val CAMPO_DATA_ATUALIZADA = "data"
         const val CAMPO_FK_PRODUTO = "id_produto"
 
+        val CAMPOS = arrayOf(BaseColumns._ID, CAMPO_QUANTIDADE, CAMPO_DATA_ATUALIZADA, CAMPO_FK_PRODUTO)
     }
 }
