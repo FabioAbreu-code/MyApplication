@@ -10,6 +10,7 @@ import org.junit.runner.RunWith
 
 import org.junit.Assert.*
 import org.junit.Before
+import java.util.Calendar
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -61,6 +62,7 @@ class BdInstrumentedTest {
 
         val produtos = Produtos("Água Monchique de 720ml, com 9.5pH. Garrafa 100% reciclada.","Água Monchique 720ml")
         insereProduto(bd, produtos)
+
     }
 
 
@@ -71,19 +73,25 @@ class BdInstrumentedTest {
         val produtos1 = Produtos("Conservar em local fresco e seco. Uma vez aberta a embalagem conservar no frigorífico e consumir dentro de 3 dias.","Leite Mimosa UHT Meio Gordo 1L")
         insereProduto(bd, produtos1)
 
-        val stock = Stock(2,produtos1.id,12052023)
+        val Data1 = Calendar.getInstance()
+        Data1.set(2023,5,12)
+        val stock = Stock(2,produtos1.id, Data1)
         insereStock(bd, stock)
 
         val produtos2 = Produtos("Conservar entre 4ºC e 8ºC","Queijo Flamengo Fatiado 500gr Continente")
         insereProduto(bd, produtos2)
 
-        val stock2 = Stock(0,produtos2.id,12052023)
+        val Data2 = Calendar.getInstance()
+        Data2.set(2023,5,13)
+        val stock2 = Stock(0,produtos2.id,Data2)
         insereStock(bd, stock2)
 
         val produtos3 = Produtos("Conservar a temperatura inferior a 6ºC","Manteiga Mimosa com Sal 250gr")
         insereProduto(bd, produtos3)
 
-        val stock3 = Stock(1,produtos3.id,12052023)
+        val Data3 = Calendar.getInstance()
+        Data3.set(2023,5,13)
+        val stock3 = Stock(1,produtos3.id,Data3)
         insereStock(bd, stock3)
     }
 
@@ -134,13 +142,17 @@ class BdInstrumentedTest {
         val produto1 = Produtos("Conservar num local fresco e seco.","Massa Esparguete 500gr Continente")
         insereProduto(bd, produto1)
 
-        val stock1 = Stock(2,produto1.id, 12052023)
+        val Data1 = Calendar.getInstance()
+        Data1.set(2023,5,12)
+        val stock1 = Stock(2,produto1.id, Data1)
         insereStock(bd, stock1)
 
         val produto2 = Produtos("Local fresco e seco. Depois de aberto, colocar no frigorífico e consumir de preferência no prazo de 3 dias.","Nata UHT para Culinária 200ml Continente")
         insereProduto(bd, produto2)
 
-        val stock2 = Stock(1,produto2.id, 12052023)
+        val Data2 = Calendar.getInstance()
+        Data2.set(2023,5,13)
+        val stock2 = Stock(1,produto2.id, Data2)
         insereStock(bd, stock2)
 
         val tabelaStock = TabelaStock(bd)
@@ -180,7 +192,9 @@ class BdInstrumentedTest {
         val produto = Produtos("Lava Tudo Lavanda com tecnologia extra brilho oferece uma limpeza profunda com uma fragrância intensa dando um brilho único às superfícies.", "Sonasol, Lava Tudo Perfumado Lavanda 3lt")
         insereProduto(db, produto)
 
-        val stock = Stock(0,produto.id,12052023)
+        val Data1 = Calendar.getInstance()
+        Data1.set(2023,5,12)
+        val stock = Stock(0,produto.id,Data1)
         insereStock(db, stock)
 
         val registosEliminados = TabelaStock(db).elimina(
@@ -216,11 +230,17 @@ class BdInstrumentedTest {
         val produto = Produtos("Conservar a -18ºC. Contém Trigo. Pode conter vestígios de Ovos.", "Nuggets de Frango emb. 208 gr (10 un)")
         insereProduto(db, produto)
 
-        val stock = Stock(1,produto.id,12052023)
+        val Data1 = Calendar.getInstance()
+        Data1.set(2023,5,12)
+
+        val Data2 = Calendar.getInstance()
+        Data1.set(2023,5,15)
+
+        val stock = Stock(1,produto.id,Data1)
         insereStock(db, stock)
 
         stock.quantidade = 2
-        stock.data = 13052023
+        stock.data = Data2
 
         val registosAlterados = TabelaStock(db).altera(
             stock.toContentValues(),
