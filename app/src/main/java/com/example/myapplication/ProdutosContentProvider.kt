@@ -80,7 +80,18 @@ class ProdutosContentProvider : ContentProvider() {
         selection: String?,
         selectionArgs: Array<out String>?
     ): Int {
-        TODO("Not yet implemented")
+        val bd = bdOpenHelper!!.writableDatabase
+        val endereco = uriMatcher().match(uri)
+
+        val tabela = when(endereco){
+            URI_PRODUTOS_ID -> TabelaProdutos(bd)
+            URI_STOCK_ID -> TabelaStock(bd)
+            else -> return 0
+        }
+
+        val id = uri.lastPathSegment!!
+        return tabela.altera(values!!,"${BaseColumns._ID}=?", arrayOf(id))
+
     }
 
     companion object {
