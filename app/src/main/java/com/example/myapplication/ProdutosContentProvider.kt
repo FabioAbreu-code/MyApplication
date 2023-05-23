@@ -5,6 +5,7 @@ import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
+import android.provider.BaseColumns
 
 class ProdutosContentProvider : ContentProvider() {
 
@@ -22,7 +23,30 @@ class ProdutosContentProvider : ContentProvider() {
         selectionArgs: Array<out String>?,
         sortOrder: String?
     ): Cursor? {
-        TODO("Not yet implemented")
+        val bd = bdOpenHelper!!.readableDatabase
+        val id = uri.lastPathSegment
+
+        var endereco = uriMatcher().match(uri)
+
+        val tabela = when(endereco){
+            URI_PRODUTOS, URI_PRODUTOS_ID -> TabelaProdutos(bd)
+            URI_STOCK, URI_STOCK_ID -> TabelaStock(bd)
+            else -> null
+        }
+
+        val (selecao, argsSel) = when(endereco){
+            URI_PRODUTOS_ID, URI_STOCK_ID -> Pair("${BaseColumns._ID}=?", arrayOf(id))
+            else -> Pair(selection,  selectionArgs)
+        }
+
+        return tabela?.consulta(
+                projection as Array<String>,
+                selecao,
+                argsSel as Array<String>?,
+                null,
+                null,
+                sortOrder)
+
     }
 
     override fun getType(uri: Uri): String? {
@@ -52,11 +76,16 @@ class ProdutosContentProvider : ContentProvider() {
         const val STOCK = "stock"
 
         private const val URI_PRODUTOS = 100
+        private const val URI_PRODUTOS_ID = 101
         private const val URI_STOCK = 200
+        private const val URI_STOCK_ID = 201
 
         fun  uriMatcher() = UriMatcher(UriMatcher.NO_MATCH).apply {
             addURI(AUTHORITY, PRODUTOS, URI_PRODUTOS)
+            addURI(AUTHORITY, "$PRODUTOS/#", URI_PRODUTOS_ID)
             addURI(AUTHORITY, STOCK, URI_STOCK)
+            addURI(AUTHORITY, "$STOCK/#", URI_STOCK_ID)
+
         }
     }
 }
