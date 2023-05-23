@@ -26,7 +26,7 @@ class ProdutosContentProvider : ContentProvider() {
         val bd = bdOpenHelper!!.readableDatabase
         val id = uri.lastPathSegment
 
-        var endereco = uriMatcher().match(uri)
+        val endereco = uriMatcher().match(uri)
 
         val tabela = when(endereco){
             URI_PRODUTOS, URI_PRODUTOS_ID -> TabelaProdutos(bd)
@@ -54,7 +54,20 @@ class ProdutosContentProvider : ContentProvider() {
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        TODO("Not yet implemented")
+        val bd = bdOpenHelper!!.writableDatabase
+        val endereco = uriMatcher().match(uri)
+
+        val tabela = when(endereco){
+            URI_PRODUTOS -> TabelaProdutos(bd)
+            URI_STOCK -> TabelaStock(bd)
+            else -> return null
+        }
+
+        val id = tabela.insere(values!!)
+
+        if(id == -1L ) return null
+
+        return  Uri.withAppendedPath(uri, id.toString())
     }
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
