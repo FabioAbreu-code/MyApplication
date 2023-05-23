@@ -2,8 +2,8 @@
 <resources>
     <string name="app_name">SmartShelf</string>
     <string name="action_settings">Configurações</string>
-    <string name="first_fragment_label">Primeira Parte</string>
-    <string name="second_fragment_label">Segunda Parte</string>
+    <string name="menu_principal_fragment_label">Primeira Parte</string>
+    <string name="sobre_fragment_label">Segunda Parte</string>
     <string name="next">Seguinte</string>
     <string name="previous">Anterior</string>
     <string name="lorem_ipsum">
