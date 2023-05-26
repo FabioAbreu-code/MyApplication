@@ -14,20 +14,20 @@
         tools:ignore="ExtraText">
 
         <Button
-            android:id="@+id/stock"
+            android:id="@+id/button_stock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:backgroundTint="@color/orange"
             android:text="@string/stock"
             android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@+id/Products"
-            app:layout_constraintStart_toStartOf="@+id/Products"
-            app:layout_constraintTop_toBottomOf="@+id/Products"
+            app:layout_constraintEnd_toEndOf="@+id/button_produtos"
+            app:layout_constraintStart_toStartOf="@+id/button_produtos"
+            app:layout_constraintTop_toBottomOf="@+id/button_produtos"
             tools:ignore="TextContrastCheck" />
 
         <Button
-            android:id="@+id/button_first"
+            android:id="@+id/button_sobre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -40,16 +40,16 @@
             tools:ignore="TextContrastCheck" />
 
         <Button
-            android:id="@+id/Products"
+            android:id="@+id/button_produtos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:backgroundTint="@color/orange"
             android:text="@string/products"
             android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@+id/button_first"
-            app:layout_constraintStart_toStartOf="@+id/button_first"
-            app:layout_constraintTop_toBottomOf="@+id/button_first"
+            app:layout_constraintEnd_toEndOf="@+id/button_sobre"
+            app:layout_constraintStart_toStartOf="@+id/button_sobre"
+            app:layout_constraintTop_toBottomOf="@+id/button_sobre"
             tools:ignore="TextContrastCheck" /><![CDATA[
 
 

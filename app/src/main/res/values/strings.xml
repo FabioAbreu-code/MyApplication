@@ -47,4 +47,6 @@
     <string name="about">About</string>
     <string name="products">Household Consumer Goods</string>
     <string name="stock">Stock</string>
+    <string name="lista_produtos_label">Products</string>
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>

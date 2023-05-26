@@ -46,4 +46,5 @@
     <string name="about">Sobre</string>
     <string name="products">Itens De Consumo Doméstico</string>
     <string name="stock">Stock</string>
+    <string name="lista_produtos_label">Produtos</string>
 </resources>

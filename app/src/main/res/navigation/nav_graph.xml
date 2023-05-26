@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_MenuPrincipalFragment_to_SobreFragment"
             app:destination="@id/SobreFragment" />
+        <action
+            android:id="@+id/action_MenuPrincipalFragment_to_ListaProdutosFragment"
+            app:destination="@id/ListaProdutosFragment" />
     </fragment>
     <fragment
         android:id="@+id/SobreFragment"
@@ -23,6 +26,15 @@
 
         <action
             android:id="@+id/action_SobreFragment_to_MenuPrincipalFragment"
+            app:destination="@id/MenuPrincipalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ListaProdutosFragment"
+        android:name="com.example.myapplication.ListaProdutosFragment"
+        android:label="@string/lista_produtos_label"
+        tools:layout="@layout/fragment_lista_produtos">
+        <action
+            android:id="@+id/action_ListaProdutosFragment_to_MenuPrincipalFragment"
             app:destination="@id/MenuPrincipalFragment" />
     </fragment>
 </navigation>
