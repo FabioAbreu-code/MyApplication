@@ -11,6 +11,7 @@ import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.FragmentListaProdutosBinding
 
+private const val ID_LOADER_PRODUTOS = 0
 
 /**
  * A simple [Fragment] subclass.
@@ -44,6 +45,9 @@ class ListaProdutosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         val adapterProdutos = AdapterProdutos()
         binding.recyclerViewProdutos.adapter = adapterProdutos
         binding.recyclerViewProdutos.layoutManager = LinearLayoutManager(requireContext())
+
+        val loader = LoaderManager.getInstance(this)
+        loader.initLoader(ID_LOADER_PRODUTOS, null, this)
     }
 
     companion object {
