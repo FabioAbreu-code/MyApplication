@@ -3,6 +3,7 @@ package com.example.myapplication
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
@@ -14,7 +15,16 @@ class AdapterProdutos(val fragment: ListaProdutosFragment) : RecyclerView.Adapte
         }
 
     inner class ViewHolderProduto(contentor: View) : ViewHolder(contentor) {
+        private val textViewNome = contentor.findViewById<TextView>(R.id.textViewNomeProduto)
+        private val textViewDescricao = contentor.findViewById<TextView>(R.id.textViewDescricaoProduto)
+
         internal var produtos: Produtos? = null
+
+            set(value) {
+                field = value
+                textViewNome.text = produtos?.nome ?: ""
+                textViewDescricao.text = produtos?.descricao ?: ""
+            }
 
     }
 
