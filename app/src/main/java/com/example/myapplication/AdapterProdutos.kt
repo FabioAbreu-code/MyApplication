@@ -1,11 +1,18 @@
 package com.example.myapplication
 
+import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
 class AdapterProdutos : RecyclerView.Adapter<AdapterProdutos.ViewHolderProduto>() {
+    var cursor: Cursor? = null
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
     inner class ViewHolderProduto(itemView: View) : ViewHolder(itemView) {
 
     }
