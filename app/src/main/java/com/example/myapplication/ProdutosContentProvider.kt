@@ -114,14 +114,19 @@ class ProdutosContentProvider : ContentProvider() {
     }
 
     companion object {
-        const val  AUTHORITY = "com.example.myapplication"
-        const val PRODUTOS = "produtos"
-        const val STOCK = "stock"
+        private const val  AUTHORITY = "com.example.myapplication"
+        private const val PRODUTOS = "produtos"
+        private const val STOCK = "stock"
 
         private const val URI_PRODUTOS = 100
         private const val URI_PRODUTOS_ID = 101
         private const val URI_STOCK = 200
         private const val URI_STOCK_ID = 201
+
+        private val ENDERECO_BASE = Uri.parse("content://$AUTHORITY")
+
+        val ENDERECO_STOCK = Uri.withAppendedPath(ENDERECO_BASE, STOCK)
+        val ENDERECO_PRODUTOS = Uri.withAppendedPath(ENDERECO_BASE, PRODUTOS)
 
         fun  uriMatcher() = UriMatcher(UriMatcher.NO_MATCH).apply {
             addURI(AUTHORITY, PRODUTOS, URI_PRODUTOS)
