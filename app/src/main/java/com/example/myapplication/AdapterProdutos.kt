@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
-class AdapterProdutos : RecyclerView.Adapter<AdapterProdutos.ViewHolderProduto>() {
+class AdapterProdutos(val fragment: ListaProdutosFragment) : RecyclerView.Adapter<AdapterProdutos.ViewHolderProduto>() {
     var cursor: Cursor? = null
         set(value) {
             field = value
@@ -41,7 +41,9 @@ class AdapterProdutos : RecyclerView.Adapter<AdapterProdutos.ViewHolderProduto>(
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderProduto {
-        TODO("Not yet implemented")
+        return ViewHolderProduto(
+            fragment.layoutInflater.inflate(R.layout.item_produtos, parent, false)
+        )
     }
 
     /**
@@ -50,7 +52,7 @@ class AdapterProdutos : RecyclerView.Adapter<AdapterProdutos.ViewHolderProduto>(
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return cursor?.count ?: 0
     }
 
     /**
