@@ -30,9 +30,9 @@
     </fragment>
     <fragment
         android:id="@+id/ListaProdutosFragment"
-        android:name="com.example.myapplication.ListaProdutosFragment"
+        android:name="com.example.myapplication.ListaStockFragment"
         android:label="@string/lista_produtos_label"
-        tools:layout="@layout/fragment_lista_produtos">
+        tools:layout="@layout/fragment_lista_stock">
         <action
             android:id="@+id/action_ListaProdutosFragment_to_MenuPrincipalFragment"
             app:destination="@id/MenuPrincipalFragment" />

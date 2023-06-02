@@ -7,23 +7,27 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
-class AdapterProdutos(val fragment: ListaProdutosFragment) : RecyclerView.Adapter<AdapterProdutos.ViewHolderProduto>() {
+class AdapterStock(val fragment: ListaStockFragment) : RecyclerView.Adapter<AdapterStock.ViewHolderStock>() {
     var cursor: Cursor? = null
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
-    inner class ViewHolderProduto(contentor: View) : ViewHolder(contentor) {
+    inner class ViewHolderStock(contentor: View) : ViewHolder(contentor) {
         private val textViewNome = contentor.findViewById<TextView>(R.id.textViewNomeProduto)
         private val textViewDescricao = contentor.findViewById<TextView>(R.id.textViewDescricaoProduto)
+        private val textViewStock = contentor.findViewById<TextView>(R.id.textViewStock)
+        //private val textViewData = contentor.findViewById<TextView>(R.id.textViewData)
 
-        internal var produtos: Produtos? = null
+        internal var stock: Stock? = null
 
             set(value) {
                 field = value
-                textViewNome.text = produtos?.nome ?: ""
-                textViewDescricao.text = produtos?.descricao ?: ""
+                textViewNome.text = stock?.fkProduto.toString() ?: ""
+                textViewDescricao.text = stock?.fkProduto.toString() ?: ""
+                textViewStock.text = stock?.quantidade.toString() ?: ""
+                //textViewData.text = stock?.data.toString() ?: ""
             }
 
     }
@@ -51,9 +55,9 @@ class AdapterProdutos(val fragment: ListaProdutosFragment) : RecyclerView.Adapte
      * @see .getItemViewType
      * @see .onBindViewHolder
      */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderProduto {
-        return ViewHolderProduto(
-            fragment.layoutInflater.inflate(R.layout.item_produtos, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderStock {
+        return ViewHolderStock(
+            fragment.layoutInflater.inflate(R.layout.item_stock, parent, false)
         )
     }
 
@@ -87,8 +91,8 @@ class AdapterProdutos(val fragment: ListaProdutosFragment) : RecyclerView.Adapte
      * item at the given position in the data set.
      * @param position The position of the item within the adapter's data set.
      */
-    override fun onBindViewHolder(holder: ViewHolderProduto, position: Int) {
-        cursor!!.move(position)
-        holder.produtos = Produtos.fromCursor(cursor!!)
+    override fun onBindViewHolder(holder: ViewHolderStock, position: Int) {
+        cursor!!.moveToPosition(position)
+        holder.stock = Stock.fromCursor(cursor!!)
     }
 }

@@ -7,12 +7,12 @@ import android.database.Cursor
 import android.net.Uri
 import android.provider.BaseColumns
 
-class ProdutosContentProvider : ContentProvider() {
+class StockContentProvider : ContentProvider() {
 
-    private var bdOpenHelper : BdProductsOpenHelper? = null
+    private var bdOpenHelper : BdStockOpenHelper? = null
 
     override fun onCreate(): Boolean {
-        bdOpenHelper = BdProductsOpenHelper(context)
+        bdOpenHelper = BdStockOpenHelper(context)
         return true
     }
 

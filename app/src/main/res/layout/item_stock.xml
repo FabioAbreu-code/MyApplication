@@ -13,11 +13,19 @@
         android:layout_marginTop="4dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/design_default_color_primary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.122"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Papa Infantil Farinha Láctea +6M" />
+
+    <TextView
+        android:id="@+id/textViewStock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintStart_toStartOf="@+id/textViewNomeProduto"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNomeProduto"
+        tools:text="Stock: 1" />
 
     <TextView
         android:id="@+id/textViewDescricaoProduto"
@@ -25,7 +33,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:paddingBottom="8dp"
-        app:layout_constraintStart_toStartOf="@+id/textViewNomeProduto"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNomeProduto"
-        tools:text="Stock: 2 embalagens" />
+        app:layout_constraintStart_toStartOf="@+id/textViewStock"
+        app:layout_constraintTop_toBottomOf="@+id/textViewStock"
+        tools:text="Descricao: Conservar em local fresco e seco. Depois de aberto, consumir no prazo de 1 mês." />
+
+    <TextView
+        android:id="@+id/textViewData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintStart_toStartOf="@+id/textViewDescricaoProduto"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescricaoProduto"
+        tools:text="30/05/2023"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

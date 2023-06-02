@@ -29,13 +29,13 @@ class BdInstrumentedTest {
 
     @Test
     fun consegueAbrirBaseDados() {
-        val openHelper = BdProductsOpenHelper(getAppContext())
+        val openHelper = BdStockOpenHelper(getAppContext())
         val bd = openHelper.readableDatabase
         assert(bd.isOpen)
     }
 
     private fun getWritableDatabase(): SQLiteDatabase {
-        val openHelper = BdProductsOpenHelper(getAppContext())
+        val openHelper = BdStockOpenHelper(getAppContext())
         return openHelper.writableDatabase
 
     }

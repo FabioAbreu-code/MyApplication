@@ -24,7 +24,7 @@
         </activity>
         <provider
             android:authorities="com.example.myapplication"
-            android:name=".ProdutosContentProvider"
+            android:name=".StockContentProvider"
             android:exported="false"
             />
     </application>

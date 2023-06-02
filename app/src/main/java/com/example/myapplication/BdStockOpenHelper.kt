@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class BdProductsOpenHelper(context: Context?)
+class BdStockOpenHelper(context: Context?)
     : SQLiteOpenHelper(context, NOME_BASE_DADOS, null, VERSAO_BASE_DADOS) {
     /**
      * Called when the database is created for the first time. This is where the
