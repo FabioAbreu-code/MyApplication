@@ -19,5 +19,7 @@ Fábio Abreu
     <string name="adicionar">Adicionar</string>
     <string name="editar">Editar</string>
     <string name="eliminar">Eliminar</string>
+    <string name="novo_produto_label">Novo produto</string>
+
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

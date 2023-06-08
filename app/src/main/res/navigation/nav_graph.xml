@@ -36,5 +36,18 @@
         <action
             android:id="@+id/action_ListaStockFragment_to_MenuPrincipalFragment"
             app:destination="@id/MenuPrincipalFragment" />
+        <action
+            android:id="@+id/action_ListaStockFragment_to_novoProdutoFragment"
+            app:destination="@id/novoProdutoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/novoProdutoFragment"
+        android:name="com.example.myapplication.NovoProdutoFragment"
+        android:label="@string/novo_produto_label"
+        tools:layout="@layout/fragment_novo_produto">
+        <action
+            android:id="@+id/action_novoProdutoFragment_to_ListaStockFragment"
+            app:destination="@id/ListaStockFragment" />
+
     </fragment>
 </navigation>
