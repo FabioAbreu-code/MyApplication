@@ -16,7 +16,7 @@
             app:destination="@id/SobreFragment" />
         <action
             android:id="@+id/action_MenuPrincipalFragment_to_ListaProdutosFragment"
-            app:destination="@id/ListaProdutosFragment" />
+            app:destination="@id/ListaStockFragment" />
     </fragment>
     <fragment
         android:id="@+id/SobreFragment"
@@ -29,12 +29,12 @@
             app:destination="@id/MenuPrincipalFragment" />
     </fragment>
     <fragment
-        android:id="@+id/ListaProdutosFragment"
+        android:id="@+id/ListaStockFragment"
         android:name="com.example.myapplication.ListaStockFragment"
         android:label="@string/lista_produtos_label"
         tools:layout="@layout/fragment_lista_stock">
         <action
-            android:id="@+id/action_ListaProdutosFragment_to_MenuPrincipalFragment"
+            android:id="@+id/action_ListaStockFragment_to_MenuPrincipalFragment"
             app:destination="@id/MenuPrincipalFragment" />
     </fragment>
 </navigation>

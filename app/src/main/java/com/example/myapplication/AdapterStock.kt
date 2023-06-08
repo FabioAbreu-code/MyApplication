@@ -24,9 +24,9 @@ class AdapterStock(val fragment: ListaStockFragment) : RecyclerView.Adapter<Adap
 
             set(value) {
                 field = value
-                textViewNome.text = stock?.fkProduto.toString() ?: ""
-                textViewDescricao.text = stock?.fkProduto.toString() ?: ""
-                textViewStock.text = stock?.quantidade.toString() ?: ""
+                textViewNome.text = stock?.fkProduto?.nome ?: ""
+                textViewDescricao.text = "Desc: "+(stock?.fkProduto?.descricao ?: "")
+                textViewStock.text = "Stk: " + (stock?.quantidade.toString() ?: "")
                 //textViewData.text = stock?.data.toString() ?: ""
             }
 

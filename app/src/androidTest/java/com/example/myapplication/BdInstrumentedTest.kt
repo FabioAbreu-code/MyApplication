@@ -75,7 +75,7 @@ class BdInstrumentedTest {
 
         val Data1 = Calendar.getInstance()
         Data1.set(2023,5,12)
-        val stock = Stock(2,produtos1.id, Data1)
+        val stock = Stock(2,produtos1, Data1)
         insereStock(bd, stock)
 
         val produtos2 = Produtos("Conservar entre 4ºC e 8ºC","Queijo Flamengo Fatiado 500gr Continente")
@@ -83,7 +83,7 @@ class BdInstrumentedTest {
 
         val Data2 = Calendar.getInstance()
         Data2.set(2023,5,13)
-        val stock2 = Stock(0,produtos2.id,Data2)
+        val stock2 = Stock(0,produtos2,Data2)
         insereStock(bd, stock2)
 
         val produtos3 = Produtos("Conservar a temperatura inferior a 6ºC","Manteiga Mimosa com Sal 250gr")
@@ -91,7 +91,7 @@ class BdInstrumentedTest {
 
         val Data3 = Calendar.getInstance()
         Data3.set(2023,5,13)
-        val stock3 = Stock(1,produtos3.id,Data3)
+        val stock3 = Stock(1,produtos3,Data3)
         insereStock(bd, stock3)
     }
 
@@ -144,7 +144,7 @@ class BdInstrumentedTest {
 
         val Data1 = Calendar.getInstance()
         Data1.set(2023,5,12)
-        val stock1 = Stock(2,produto1.id, Data1)
+        val stock1 = Stock(2,produto1, Data1)
         insereStock(bd, stock1)
 
         val produto2 = Produtos("Local fresco e seco. Depois de aberto, colocar no frigorífico e consumir de preferência no prazo de 3 dias.","Nata UHT para Culinária 200ml Continente")
@@ -152,7 +152,7 @@ class BdInstrumentedTest {
 
         val Data2 = Calendar.getInstance()
         Data2.set(2023,5,13)
-        val stock2 = Stock(1,produto2.id, Data2)
+        val stock2 = Stock(1,produto2, Data2)
         insereStock(bd, stock2)
 
         val tabelaStock = TabelaStock(bd)
@@ -194,7 +194,7 @@ class BdInstrumentedTest {
 
         val Data1 = Calendar.getInstance()
         Data1.set(2023,5,12)
-        val stock = Stock(0,produto.id,Data1)
+        val stock = Stock(0,produto,Data1)
         insereStock(db, stock)
 
         val registosEliminados = TabelaStock(db).elimina(
@@ -236,7 +236,7 @@ class BdInstrumentedTest {
         val Data2 = Calendar.getInstance()
         Data1.set(2023,5,15)
 
-        val stock = Stock(1,produto.id,Data1)
+        val stock = Stock(1,produto,Data1)
         insereStock(db, stock)
 
         stock.quantidade = 2
