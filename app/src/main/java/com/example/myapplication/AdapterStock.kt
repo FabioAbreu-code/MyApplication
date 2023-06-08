@@ -39,6 +39,7 @@ class AdapterStock(val fragment: ListaStockFragment) : RecyclerView.Adapter<Adap
 
         fun seleciona() {
             viewHolderSeleccionado = this
+            fragment.stockSelecionado = stock
             itemView.setBackgroundResource(R.color.item_selected)
         }
 
