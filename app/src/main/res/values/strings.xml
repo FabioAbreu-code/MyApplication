@@ -16,5 +16,8 @@ Fábio Abreu
     <string name="products">HOUSEHOLD CONSUMER GOODS</string>
     <string name="stock">STOCK</string>
     <string name="lista_produtos_label">Products</string>
+    <string name="adicionar">Adicionar</string>
+    <string name="editar">Editar</string>
+    <string name="eliminar">Eliminar</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

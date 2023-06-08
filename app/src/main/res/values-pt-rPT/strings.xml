@@ -42,9 +42,11 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
-    <string name="categories">Categorias</string>
     <string name="about">Sobre</string>
     <string name="products">Itens De Consumo Doméstico</string>
     <string name="stock">Stock</string>
     <string name="lista_produtos_label">Produtos</string>
+    <string name="adicionar">Adicionar</string>
+    <string name="editar">Editar</string>
+    <string name="eliminar">Eliminar</string>
 </resources>
