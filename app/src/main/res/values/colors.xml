@@ -2,7 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="orange">#FFA500</color>
+    <color name="orange">#FFA033</color>
+    <color name="orange2">#FF8C00</color>
     <color name="background_bege_yellow">#F5DEB3</color>
+    <color name="item_selected">#FFE5CC</color>
+    <color name="actionBarColor">#FFB84D</color>
 
 </resources>

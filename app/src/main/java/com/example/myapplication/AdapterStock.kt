@@ -20,6 +20,13 @@ class AdapterStock(val fragment: ListaStockFragment) : RecyclerView.Adapter<Adap
         private val textViewStock = contentor.findViewById<TextView>(R.id.textViewStock)
         //private val textViewData = contentor.findViewById<TextView>(R.id.textViewData)
 
+        init {
+            contentor.setOnClickListener {
+                viewHolderSeleccionado?.desSeleciona()
+                seleciona()
+            }
+        }
+
         internal var stock: Stock? = null
 
             set(value) {
@@ -30,7 +37,17 @@ class AdapterStock(val fragment: ListaStockFragment) : RecyclerView.Adapter<Adap
                 //textViewData.text = stock?.data.toString() ?: ""
             }
 
+        fun seleciona() {
+            viewHolderSeleccionado = this
+            itemView.setBackgroundResource(R.color.item_selected)
+        }
+
+        fun desSeleciona() {
+            itemView.setBackgroundResource(android.R.color.white)
+        }
     }
+
+    private var viewHolderSeleccionado : ViewHolderStock? = null
 
     /**
      * Called when RecyclerView needs a new [ViewHolder] of the given type to represent
