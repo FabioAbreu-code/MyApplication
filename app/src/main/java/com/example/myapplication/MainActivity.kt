@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.example.myapplication.databinding.ActivityMainBinding
 import java.util.Objects
 
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    var fragment : Fragment? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
