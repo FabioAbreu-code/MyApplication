@@ -2,8 +2,8 @@
     <string name="app_name">SmartShelf</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="menu_principal_fragment_label">Menu Principal</string>
-    <string name="sobre_fragment_label">Sobre Fragment</string>
+    <string name="menu_principal_fragment_label">Main Menu</string>
+    <string name="sobre_fragment_label">About Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
@@ -16,10 +16,10 @@ Fábio Abreu
     <string name="products">HOUSEHOLD CONSUMER GOODS</string>
     <string name="stock">STOCK</string>
     <string name="lista_produtos_label">Products</string>
-    <string name="adicionar">Adicionar</string>
-    <string name="editar">Editar</string>
-    <string name="eliminar">Eliminar</string>
-    <string name="novo_produto_label">Novo produto</string>
+    <string name="adicionar">Add</string>
+    <string name="editar">Edit</string>
+    <string name="eliminar">Delete</string>
+    <string name="novo_produto_label">New Product</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
