@@ -10,10 +10,52 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextNomeProduto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="hint"
-            tools:ignore="HardcodedText,TextContrastCheck,VisualLintTextFieldSize" />
+            android:hint="@string/Nome_do_Produto"
+            android:inputType="text"
+            tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextDesProduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Des_do_Produto"
+                tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextStockProduto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/Stock_do_Produto"
+                    tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextDataValidadeProduto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/data_de_validade_do_produto"
+                        android:inputType="datetime|date"
+                        tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
     </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>

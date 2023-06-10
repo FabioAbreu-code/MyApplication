@@ -15,7 +15,7 @@ data class Stock(
         val valores = ContentValues()
         valores.put(TabelaStock.CAMPO_QUANTIDADE, quantidade)
         valores.put(TabelaStock.CAMPO_FK_PRODUTO, fkProduto.id)
-        valores.put(TabelaStock.CAMPO_DATA_ATUALIZADA, data.timeInMillis)
+        valores.put(TabelaStock.CAMPO_DATA_VALIDADE, data.timeInMillis)
         return valores
     }
 
@@ -24,7 +24,7 @@ data class Stock(
         fun fromCursor(cursor: Cursor): Stock {
             val posQuantidade = cursor.getColumnIndex(TabelaStock.CAMPO_QUANTIDADE)
             val posFkProduto = cursor.getColumnIndex(TabelaStock.CAMPO_FK_PRODUTO)
-            val posData = cursor.getColumnIndex(TabelaStock.CAMPO_DATA_ATUALIZADA)
+            val posData = cursor.getColumnIndex(TabelaStock.CAMPO_DATA_VALIDADE)
             val posId = cursor.getColumnIndex(BaseColumns._ID)
             val posDescProd = cursor.getColumnIndex(TabelaStock.CAMPO_DESC_PRODUTO)
             val posNomProd = cursor.getColumnIndex(TabelaStock.CAMPO_NOM_PRODUTO)

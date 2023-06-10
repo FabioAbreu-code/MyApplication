@@ -50,4 +50,10 @@
     <string name="editar">Editar</string>
     <string name="eliminar">Eliminar</string>
     <string name="novo_produto_label">Novo Produto</string>
+    <string name="Produtos"> </string>
+    <string name="Nome_do_Produto">Nome do Produto</string>
+    <string name="Des_do_Produto">Descrição</string>
+    <string name="data_de_validade_do_produto">Data de Validade (dd-mm-aaaa)</string>
+    <string name="Stock_do_Produto">Stock</string>
+
 </resources>

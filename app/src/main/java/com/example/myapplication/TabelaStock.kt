@@ -8,7 +8,7 @@ import android.provider.BaseColumns
 
 class TabelaStock(db: SQLiteDatabase) : TabelaBD(db, NOME_TABELA) {
     override fun cria() {
-        db.execSQL("CREATE TABLE $NOME_TABELA ($CHAVE_TABELA, $CAMPO_QUANTIDADE INTEGER NOT NULL, $CAMPO_DATA_ATUALIZADA INTEGER NOT NULL, $CAMPO_FK_PRODUTO INTEGER NOT NULL, FOREIGN KEY($CAMPO_FK_PRODUTO) REFERENCES ${TabelaProdutos.NOME_TABELA}(${BaseColumns._ID}) ON DELETE RESTRICT)")
+        db.execSQL("CREATE TABLE $NOME_TABELA ($CHAVE_TABELA, $CAMPO_QUANTIDADE INTEGER NOT NULL, $CAMPO_DATA_VALIDADE INTEGER NOT NULL, $CAMPO_FK_PRODUTO INTEGER NOT NULL, FOREIGN KEY($CAMPO_FK_PRODUTO) REFERENCES ${TabelaProdutos.NOME_TABELA}(${BaseColumns._ID}) ON DELETE RESTRICT)")
     }
 
     override fun consulta(
@@ -31,11 +31,11 @@ class TabelaStock(db: SQLiteDatabase) : TabelaBD(db, NOME_TABELA) {
         const val CAMPO_ID = "$NOME_TABELA.${BaseColumns._ID}"
 
         const val CAMPO_QUANTIDADE = "quantidade"
-        const val CAMPO_DATA_ATUALIZADA = "data"
+        const val CAMPO_DATA_VALIDADE = "data"
         const val CAMPO_FK_PRODUTO = "id_produto"
         const val CAMPO_DESC_PRODUTO = TabelaProdutos.CAMPO_DESCRICAO_PRODUTO
         const val CAMPO_NOM_PRODUTO = TabelaProdutos.CAMPO_NOME
 
-        val CAMPOS = arrayOf(CAMPO_ID, CAMPO_QUANTIDADE, CAMPO_DATA_ATUALIZADA, CAMPO_FK_PRODUTO, CAMPO_DESC_PRODUTO, CAMPO_NOM_PRODUTO)
+        val CAMPOS = arrayOf(CAMPO_ID, CAMPO_QUANTIDADE, CAMPO_DATA_VALIDADE, CAMPO_FK_PRODUTO, CAMPO_DESC_PRODUTO, CAMPO_NOM_PRODUTO)
     }
 }
