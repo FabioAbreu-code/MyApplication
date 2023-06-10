@@ -55,5 +55,7 @@
     <string name="Des_do_Produto">Descrição</string>
     <string name="data_de_validade_do_produto">Data de Validade (dd-mm-aaaa)</string>
     <string name="Stock_do_Produto">Stock</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
 
 </resources>
