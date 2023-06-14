@@ -24,7 +24,7 @@ class BdInstrumentedTest {
 
     @Before
     fun apagaBaseDados(){
-        //getAppContext().deleteDatabase(BdProductsOpenHelper.NOME_BASE_DADOS)
+        getAppContext().deleteDatabase(BdStockOpenHelper.NOME_BASE_DADOS)
     }
 
     @Test
@@ -54,6 +54,24 @@ class BdInstrumentedTest {
     ) {
         stock.id = TabelaStock(bd).insere(stock.toContentValues())
         assertNotEquals(-1, stock.id)
+    }
+
+    private fun insereFornecedor(
+        bd: SQLiteDatabase,
+        fornecedores: Fornecedores
+    ) {
+        fornecedores.id = TabelaFornecedor(bd).insere(fornecedores.toContentValues())
+        assertNotEquals(-1, fornecedores.id)
+    }
+
+    @Test
+    fun consegueInserirFornecedor() {
+        val openHelper = BdStockOpenHelper(getAppContext())
+        val bd = openHelper.writableDatabase
+
+        val fornecedores = Fornecedores("Compal","Rua Dr. António João Eusébio, nº 24, 2790-179 Carnaxide","808 200 232")
+        val id = TabelaFornecedor(bd).insere(fornecedores.toContentValues())
+        assertNotEquals(-1, id)
     }
 
     @Test

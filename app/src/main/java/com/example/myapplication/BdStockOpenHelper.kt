@@ -16,6 +16,7 @@ class BdStockOpenHelper(context: Context?)
         requireNotNull(db)
         TabelaProdutos(db).cria()
         TabelaStock(db).cria()
+        TabelaFornecedor(db).cria()
 
     }
 
