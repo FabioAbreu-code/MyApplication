@@ -52,6 +52,9 @@
         <action
             android:id="@+id/action_listaProdutosFragment_to_novoProdutoFragment2"
             app:destination="@id/novoProdutoFragment2" />
+        <action
+            android:id="@+id/action_listaProdutosFragment_to_eliminarProdutoFragment"
+            app:destination="@id/eliminarProdutoFragment" />
     </fragment>
     <fragment
         android:id="@+id/novoProdutoFragment2"
@@ -61,5 +64,17 @@
         <action
             android:id="@+id/action_novoProdutoFragment2_to_listaProdutosFragment"
             app:destination="@id/listaProdutosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eliminarProdutoFragment"
+        android:name="com.example.myapplication.EliminarProdutoFragment"
+        android:label="fragment_eliminar_produto"
+        tools:layout="@layout/fragment_eliminar_produto" >
+        <action
+            android:id="@+id/action_eliminarProdutoFragment_to_listaProdutosFragment"
+            app:destination="@id/listaProdutosFragment" />
+        <argument
+            android:name="produto2"
+            app:argType="com.example.myapplication.Produtos2" />
     </fragment>
 </navigation>

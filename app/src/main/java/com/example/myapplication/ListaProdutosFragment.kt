@@ -177,7 +177,8 @@ class ListaProdutosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     }
 
     private fun eliminarProduto() {
-
+        val acao = ListaProdutosFragmentDirections.actionListaProdutosFragmentToEliminarProdutoFragment(produtoSelecionado!!)
+        findNavController().navigate(acao)
     }
 
     private fun editarProduto() {
