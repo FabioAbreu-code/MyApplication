@@ -36,6 +36,8 @@ Fábio Abreu
     <string name="producto_eliminado_com_sucesso">producto eliminado com sucesso</string>
     <string name="erro_eliminar_produto">erro eliminar produto</string>
     <string name="editar_produto_label">editar produto label</string>
+    <string name="nome_do_fornecedor">Nome do Fornecedor</string>
+    <string name="contacto_do_fornecedor">Contacto do Fornecedor</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
