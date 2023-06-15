@@ -1,6 +1,8 @@
 package com.example.myapplication
 
+import android.net.Uri
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -12,6 +14,7 @@ import com.example.myapplication.databinding.FragmentEditarFornecedorBinding
 
 
 class EditarFornecedorFragment : Fragment() {
+    private var fornecedores: Fornecedores?= null
     private var _binding: FragmentEditarFornecedorBinding? = null
 
     // This property is only valid between onCreateView and
@@ -21,7 +24,7 @@ class EditarFornecedorFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentEditarFornecedorBinding.inflate(inflater, container, false)
         return binding.root
@@ -34,6 +37,16 @@ class EditarFornecedorFragment : Fragment() {
         val activity = activity as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_guardar_cancelar
+
+        val fornecedores = EditarFornecedorFragmentArgs.fromBundle(requireArguments()).fornecedores
+
+        if (fornecedores != null) {
+            binding.editTextNomeFornecedor.setText(fornecedores.nome_fornecedor)
+            binding.editTextContactoFornecedor.setText(fornecedores.contacto_fornecedor)
+
+        }
+
+        this.fornecedores = fornecedores
     }
 
     override fun onDestroyView() {
@@ -75,14 +88,41 @@ class EditarFornecedorFragment : Fragment() {
         }
 
 
-        val fornecedor = Fornecedores(
-            nome_fornecedor,
-            contacto_fornecedor
-        )
+        if (fornecedores == null) {
+            val fornecedor = Fornecedores(
+                nome_fornecedor,
+                contacto_fornecedor
+            )
+
+            insereFornecedor(fornecedor)
+        } else {
+            val fornecedor = fornecedores!!
+            fornecedor.nome_fornecedor = nome_fornecedor
+            fornecedor.contacto_fornecedor = contacto_fornecedor
+
+            alteraFornecedor(fornecedor)
+        }
+    }
+
+    private fun alteraFornecedor(fornecedores: Fornecedores) {
+        val enderecoFornecedor = Uri.withAppendedPath(ProdutoContentProvider.ENDERECO_FORNECEDOR, fornecedores.id.toString())
+        val fornecedoresAlterados = requireActivity().contentResolver.update(enderecoFornecedor, fornecedores.toContentValues(), null, null)
+
+        if (fornecedoresAlterados == 1) {
+            Toast.makeText(requireContext(), R.string.fornecedor_guardado_com_sucesso, Toast.LENGTH_LONG).show()
+            voltaListaFornecedores()
+        } else {
+            binding.editTextNomeFornecedor.error = getString(R.string.erro_guardar_fornecedor)
+        }
+    }
+
+    private fun insereFornecedor(
+        fornecedores: Fornecedores
+    ) {
 
         val id = requireActivity().contentResolver.insert(
             ProdutoContentProvider.ENDERECO_FORNECEDOR,
-            fornecedor.toContentValues()
+            fornecedores.toContentValues()
         )
 
         if (id == null) {

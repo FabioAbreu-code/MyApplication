@@ -47,7 +47,7 @@ class ListaFornecedoresFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentListaFornecedoresBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -157,7 +157,9 @@ class ListaFornecedoresFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
      * @param loader The Loader that is being reset.
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        adapterFornecedores!!.cursor = null
+        if (adapterFornecedores != null) {
+            adapterFornecedores!!.cursor = null
+        }
     }
 
     fun processaOpcaoMenu(item: MenuItem) : Boolean {
@@ -184,10 +186,13 @@ class ListaFornecedoresFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
     }
 
     private fun editarFornecedor() {
+        val acao = ListaFornecedoresFragmentDirections.actionListaFornecedoresFragmentToEditarFornecedorFragment(fornecedorSelecionado!!)
+        findNavController().navigate(acao)
 
     }
 
     private fun adicionaFornecedor() {
-        findNavController().navigate(R.id.action_listaFornecedoresFragment_to_novoFornecedorFragment)
+        val acao = ListaFornecedoresFragmentDirections.actionListaFornecedoresFragmentToEditarFornecedorFragment(null)
+        findNavController().navigate(acao)
     }
 }
