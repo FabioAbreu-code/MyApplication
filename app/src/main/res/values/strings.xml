@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SmartShelf</string>
+    <string name="app_name">Suppliers Products</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="menu_principal_fragment_label">Main Menu</string>
@@ -8,9 +8,9 @@
     <string name="previous">Previous</string>
 
     <string name="lorem_ipsum">
-Base de dados para Gestão de Stock de Produtos\n\n
-Exercício Programação Avançada\n
-Fábio Abreu
+Database for Product Management
+Exercise Advanced Programming
+Fabio Abreu
     </string>
     <string name="about">ABOUT</string>
     <string name="products">PRODUCTS</string>
@@ -23,27 +23,27 @@ Fábio Abreu
     <string name="Produtos"> </string>
     <string name="Nome_do_Produto">Nome do Produto</string>
     <string name="Des_do_Produto">Descrição</string>
-    <string name="data_de_validade_do_produto">Data de Validade (dd-mm-aaaa)</string>
+    <string name="data_de_validade_do_produto">Expiration date (dd-mm-yyyy)</string>
     <string name="Stock_do_Produto">Stock</string>
-    <string name="guardar">Guardar</string>
-    <string name="cancelar">Cancelar</string>
+    <string name="guardar">Save</string>
+    <string name="cancelar">Cancel</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="nome_produto_obrigatorio">nome produto obrigatorio</string>
+    <string name="nome_produto_obrigatorio">required product name</string>
     <string name="desc_produto_obrigatorio">desc produto obrigatorio</string>
-    <string name="erro_guardar_produto">erro guardar produto</string>
+    <string name="erro_guardar_produto">desc required product</string>
     <string name="produto_guardado_com_sucesso">produto guardado com sucesso</string>
-    <string name="producto_eliminado_com_sucesso">producto eliminado com sucesso</string>
-    <string name="erro_eliminar_produto">erro eliminar produto</string>
-    <string name="editar_produto_label">editar produto label</string>
-    <string name="nome_do_fornecedor">Nome do Fornecedor</string>
-    <string name="contacto_do_fornecedor">Contacto do Fornecedor</string>
-    <string name="nome_do_fornecedor_obrigatorio">nome do fornecedor obrigatorio</string>
-    <string name="contacto_fornecedor_obrigatorio">contacto fornecedor obrigatorio</string>
-    <string name="erro_guardar_fornecedor">erro guardar fornecedor</string>
-    <string name="fornecedor_guardado_com_sucesso">fornecedor guardado com sucesso</string>
-    <string name="fornecedor_eliminado_com_sucesso">fornecedor eliminado com sucesso</string>
-    <string name="erro_eliminar_fornecedor">erro eliminar fornecedor</string>
+    <string name="producto_eliminado_com_sucesso">successfully saved product</string>
+    <string name="erro_eliminar_produto">error delete product</string>
+    <string name="editar_produto_label">edit product label</string>
+    <string name="nome_do_fornecedor">Supplier Name</string>
+    <string name="contacto_do_fornecedor">Supplier Contact</string>
+    <string name="nome_do_fornecedor_obrigatorio">supplier name required</string>
+    <string name="contacto_fornecedor_obrigatorio">mandatory supplier contact</string>
+    <string name="erro_guardar_fornecedor">error save supplier</string>
+    <string name="fornecedor_guardado_com_sucesso">provider successfully saved</string>
+    <string name="fornecedor_eliminado_com_sucesso">supplier successfully deleted</string>
+    <string name="erro_eliminar_fornecedor">error delete supplier</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
