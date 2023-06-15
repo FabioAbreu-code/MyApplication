@@ -13,14 +13,14 @@ import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
-import com.example.myapplication.databinding.FragmentNovoProduto2Binding
+import com.example.myapplication.databinding.FragmentEditarProduto2Binding
 
 
 
 private const val ID_LOADER_FORNECEDORES = 0
 
-class NovoProdutoFragment2 : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
-    private var _binding: FragmentNovoProduto2Binding? = null
+class EditarProdutoFragment2 : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+    private var _binding: FragmentEditarProduto2Binding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -31,7 +31,7 @@ class NovoProdutoFragment2 : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentNovoProduto2Binding.inflate(inflater, container, false)
+        _binding = FragmentEditarProduto2Binding.inflate(inflater, container, false)
         return binding.root
 
     }
