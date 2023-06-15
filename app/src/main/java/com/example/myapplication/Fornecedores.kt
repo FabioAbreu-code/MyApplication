@@ -3,12 +3,13 @@ package com.example.myapplication
 import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
+import java.io.Serializable
 
 data class Fornecedores(
     var nome_fornecedor: String,
     var contacto_fornecedor: String,
     var id: Long = -1
-) {
+) : Serializable {
     fun toContentValues() : ContentValues {
         val valores = ContentValues()
 

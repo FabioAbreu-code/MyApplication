@@ -104,5 +104,8 @@
         <action
             android:id="@+id/action_eliminarFornecedorFragment_to_listaFornecedoresFragment"
             app:destination="@id/listaFornecedoresFragment" />
+        <argument
+            android:name="fornecedores"
+            app:argType="com.example.myapplication.Fornecedores" />
     </fragment>
 </navigation>
