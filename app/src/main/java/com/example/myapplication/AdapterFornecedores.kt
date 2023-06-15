@@ -3,6 +3,7 @@ package com.example.myapplication
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
@@ -13,7 +14,15 @@ class AdapterFornecedores(val fragment: ListaFornecedoresFragment) : RecyclerVie
             notifyDataSetChanged()
         }
     inner class ViewHolderFornecedor(contentor: View) : ViewHolder(contentor) {
+        private val textViewNomeFornecedor = contentor.findViewById<TextView>(R.id.textViewNomeFornecedor)
+        private val textViewContactoFornecedor = contentor.findViewById<TextView>(R.id.textViewContactoFornecedor)
+
         internal var fornecedor: Fornecedores? = null
+            set(value) {
+                field = value
+                textViewNomeFornecedor.text = fornecedor?.nome_fornecedor ?: ""
+                textViewContactoFornecedor.text = fornecedor?.contacto_fornecedor ?: ""
+            }
     }
 
     /**
