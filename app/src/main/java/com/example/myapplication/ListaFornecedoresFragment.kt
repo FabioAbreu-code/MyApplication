@@ -57,6 +57,9 @@ class ListaFornecedoresFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
 
         val loader = LoaderManager.getInstance(this)
         loader.initLoader(ID_LOADER_FORNECEDORES, null, this)
+
+        val activity = activity as MainActivity
+        activity.idMenuAtual = R.menu.menu_lista_produtos
     }
 
     companion object {
