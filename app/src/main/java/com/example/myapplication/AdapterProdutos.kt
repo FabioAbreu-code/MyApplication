@@ -19,6 +19,13 @@ class AdapterProdutos(val fragment: ListaProdutosFragment) : RecyclerView.Adapte
         private val textViewNomeProduto = contentor.findViewById<TextView>(R.id.textViewNomeProduto)
         private val textViewNomeFornecedor = contentor.findViewById<TextView>(R.id.textViewNomeFornecedor)
 
+        init {
+            contentor.setOnClickListener {
+                viewHolderSeleccionado?.desSeleciona()
+                seleciona()
+            }
+        }
+
         internal var produto: Produtos2? = null
 
             set(value) {
@@ -26,7 +33,19 @@ class AdapterProdutos(val fragment: ListaProdutosFragment) : RecyclerView.Adapte
                 textViewNomeProduto.text = produto?.nome_produto ?: ""
                 textViewNomeFornecedor.text = produto?.id_fornecedor?.nome_fornecedor ?: ""
             }
+
+        fun seleciona() {
+            viewHolderSeleccionado = this
+            fragment.produtoSelecionado = produto
+            itemView.setBackgroundResource(R.color.item_selected)
+        }
+
+        fun desSeleciona() {
+            itemView.setBackgroundResource(android.R.color.white)
+        }
     }
+
+    private var viewHolderSeleccionado : ViewHolderProduto? = null
 
     /**
      * Called when RecyclerView needs a new [ViewHolder] of the given type to represent

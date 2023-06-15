@@ -58,5 +58,9 @@
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nome_produto_obrigatorio">nome produto obrigatorio</string>
+    <string name="desc_produto_obrigatorio">desc produto obrigatorio</string>
+    <string name="erro_guardar_produto">erro guardar produto</string>
+    <string name="produto_guardado_com_sucesso">produto guardado com sucesso</string>
 
 </resources>

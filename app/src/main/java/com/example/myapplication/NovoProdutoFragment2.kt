@@ -2,56 +2,49 @@ package com.example.myapplication
 
 import android.database.Cursor
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SimpleCursorAdapter
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapplication.databinding.FragmentListaProdutosBinding
+import com.example.myapplication.databinding.FragmentNovoProduto2Binding
 
 
-private const val ID_LOADER_PRODUTOS2 = 0
 
+private const val ID_LOADER_FORNECEDORES = 0
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ListaProdutosFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ListaProdutosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
-    private var _binding: FragmentListaProdutosBinding? = null
+class NovoProdutoFragment2 : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+    private var _binding: FragmentNovoProduto2Binding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
 
-    var produtoSelecionado : Produtos2? = null
-        set(value) {
-            field = value
-
-            val mostrarEliminarAlterar = (value != null)
-
-            val activity = activity as MainActivity
-            activity.mostraOpcaoMenu(R.id.action_editar, mostrarEliminarAlterar)
-            activity.mostraOpcaoMenu(R.id.action_eliminar, mostrarEliminarAlterar)
-        }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentListaProdutosBinding.inflate(inflater, container, false)
+
+        _binding = FragmentNovoProduto2Binding.inflate(inflater, container, false)
         return binding.root
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val loader = LoaderManager.getInstance(this)
+        loader.initLoader(ID_LOADER_FORNECEDORES, null, this)
+
+        val activity = activity as MainActivity
+        activity.fragment = this
+        activity.idMenuAtual = R.menu.menu_guardar_cancelar
     }
 
     override fun onDestroyView() {
@@ -59,21 +52,61 @@ class ListaProdutosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         _binding = null
     }
 
-    private var adapterProdutos: AdapterProdutos? = null
+    fun processaOpcaoMenu(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_guardar -> {
+                guardar()
+                true
+            }
+            R.id.action_cancelar -> {
+                voltaListaProdutos()
+                true
+            }
+            else -> false
+        }
+    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private fun voltaListaProdutos() {
+        findNavController().navigate(R.id.action_novoProdutoFragment2_to_listaProdutosFragment)
+    }
 
-        adapterProdutos = AdapterProdutos(this)
-        binding.recyclerViewProdutos2.adapter = adapterProdutos
-        binding.recyclerViewProdutos2.layoutManager = LinearLayoutManager(requireContext())
+    private fun guardar() {
+        val nome_produto = binding.editTextNomeProduto.text.toString()
+        if (nome_produto.isBlank()) {
+            binding.editTextNomeProduto.error = getString(R.string.nome_produto_obrigatorio)
+            binding.editTextNomeProduto.requestFocus()
+            return
+        }
 
-        val loader = LoaderManager.getInstance(this)
-        loader.initLoader(ID_LOADER_PRODUTOS2, null, this)
+        val desc_produto = binding.editTextDesProduto.text.toString()
+        if (desc_produto.isBlank()) {
+            binding.editTextDesProduto.error = getString(R.string.desc_produto_obrigatorio)
+            binding.editTextDesProduto.requestFocus()
+            return
+        }
 
-        val activity = activity as MainActivity
-        activity.fragment = this
-        activity.idMenuAtual = R.menu.menu_lista_produtos
+        val fornecedorId = binding.spinnerFornecedores.selectedItemId
+
+
+        val produto = Produtos2(
+            nome_produto,
+            desc_produto,
+            Fornecedores("?","?", fornecedorId),
+
+        )
+
+        val id = requireActivity().contentResolver.insert(
+            ProdutoContentProvider.ENDERECO_PRODUTO2,
+            produto.toContentValues()
+        )
+
+        if (id == null) {
+            binding.editTextNomeProduto.error = getString(R.string.erro_guardar_produto)
+            return
+        }
+
+        Toast.makeText(requireContext(), getString(R.string.produto_guardado_com_sucesso), Toast.LENGTH_SHORT).show()
+        voltaListaProdutos()
     }
 
     /**
@@ -89,11 +122,25 @@ class ListaProdutosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
         return CursorLoader(
             requireContext(),
-            ProdutoContentProvider.ENDERECO_PRODUTO2,
-            Tabela2Produtos.CAMPOS,
+            ProdutoContentProvider.ENDERECO_FORNECEDOR,
+            TabelaFornecedores.CAMPOS,
             null, null,
             TabelaFornecedores.NOME_FORNECEDOR
         )
+    }
+
+    /**
+     * Called when a previously created loader is being reset, and thus
+     * making its data unavailable.  The application should at this point
+     * remove any references it has to the Loader's data.
+     *
+     *
+     * This will always be called from the process's main thread.
+     *
+     * @param loader The Loader that is being reset.
+     */
+    override fun onLoaderReset(loader: Loader<Cursor>) {
+        binding.spinnerFornecedores.adapter = null
     }
 
     /**
@@ -140,51 +187,18 @@ class ListaProdutosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
      * @param data The data generated by the Loader.
      */
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
-        adapterProdutos!!.cursor = data
-    }
-
-    /**
-     * Called when a previously created loader is being reset, and thus
-     * making its data unavailable.  The application should at this point
-     * remove any references it has to the Loader's data.
-     *
-     *
-     * This will always be called from the process's main thread.
-     *
-     * @param loader The Loader that is being reset.
-     */
-    override fun onLoaderReset(loader: Loader<Cursor>) {
-        adapterProdutos!!.cursor = null
-    }
-
-
-    fun processaOpcaoMenu(item: MenuItem) : Boolean {
-        return when (item.itemId) {
-            R.id.action_adicionar -> {
-                adicionaProduto()
-                true
-            }
-            R.id.action_editar -> {
-                editarProduto()
-                true
-            }
-            R.id.action_eliminar -> {
-                eliminarProduto()
-                true
-            }
-            else -> false
+        if (data == null) {
+            binding.spinnerFornecedores.adapter = null
+            return
         }
-    }
 
-    private fun eliminarProduto() {
-
-    }
-
-    private fun editarProduto() {
-
-    }
-
-    private fun adicionaProduto() {
-        findNavController().navigate(R.id.action_listaProdutosFragment_to_novoProdutoFragment2)
+        binding.spinnerFornecedores.adapter = SimpleCursorAdapter(
+            requireContext(),
+            android.R.layout.simple_list_item_1,
+            data,
+            arrayOf(TabelaFornecedores.NOME_FORNECEDOR),
+            intArrayOf(android.R.id.text1),
+            0
+        )
     }
 }
