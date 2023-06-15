@@ -87,7 +87,7 @@ class ListaStockFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>  {
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
         return CursorLoader(
             requireContext(),
-            StockContentProvider.ENDERECO_STOCK,
+            ProdutoContentProvider.ENDERECO_STOCK,
             TabelaStock.CAMPOS,
             null, null,
             TabelaStock.CAMPO_QUANTIDADE
