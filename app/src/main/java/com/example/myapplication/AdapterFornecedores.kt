@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
-class AdapterFornecedores : RecyclerView.Adapter<AdapterFornecedores.ViewHolderFornecedor>() {
+class AdapterFornecedores(val fragment: ListaFornecedoresFragment) : RecyclerView.Adapter<AdapterFornecedores.ViewHolderFornecedor>() {
     var cursor: Cursor? = null
         set(value) {
             field = value
@@ -40,7 +40,9 @@ class AdapterFornecedores : RecyclerView.Adapter<AdapterFornecedores.ViewHolderF
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderFornecedor {
-        TODO("Not yet implemented")
+        return ViewHolderFornecedor(
+            fragment.layoutInflater.inflate(R.layout.item_fornecedor, parent, false)
+        )
     }
 
     /**
