@@ -4,6 +4,7 @@ import android.database.Cursor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
@@ -147,5 +148,35 @@ class ListaFornecedoresFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
         adapterFornecedores!!.cursor = null
+    }
+
+    fun processaOpcaoMenu(item: MenuItem) : Boolean {
+        return when (item.itemId) {
+            R.id.action_adicionar -> {
+                adicionaFornecedor()
+                true
+            }
+            R.id.action_editar -> {
+                editarFornecedor()
+                true
+            }
+            R.id.action_eliminar -> {
+                eliminarFornecedor()
+                true
+            }
+            else -> false
+        }
+    }
+
+    private fun eliminarFornecedor() {
+
+    }
+
+    private fun editarFornecedor() {
+
+    }
+
+    private fun adicionaFornecedor() {
+
     }
 }
