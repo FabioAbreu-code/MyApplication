@@ -30,5 +30,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewNomeProduto"
         tools:text="Coca-Cola" />
 
+    <TextView
+        android:id="@+id/textViewDescricaoProduto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintStart_toStartOf="@+id/textViewNomeFornecedor"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNomeFornecedor"
+        tools:text="Proteger da luz solar. Preservar de odores agressivos. Conservar em lugar limpo, fresco e seco." />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

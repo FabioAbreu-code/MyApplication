@@ -17,6 +17,7 @@ class AdapterProdutos(val fragment: ListaProdutosFragment) : RecyclerView.Adapte
 
     inner class ViewHolderProduto(contentor: View) : ViewHolder(contentor) {
         private val textViewNomeProduto = contentor.findViewById<TextView>(R.id.textViewNomeProduto)
+        private val textViewDescProduto = contentor.findViewById<TextView>(R.id.textViewDescricaoProduto)
         private val textViewNomeFornecedor = contentor.findViewById<TextView>(R.id.textViewNomeFornecedor)
 
         init {
@@ -31,7 +32,9 @@ class AdapterProdutos(val fragment: ListaProdutosFragment) : RecyclerView.Adapte
             set(value) {
                 field = value
                 textViewNomeProduto.text = produto?.nome_produto ?: ""
-                textViewNomeFornecedor.text = produto?.id_fornecedor?.nome_fornecedor ?: ""
+                textViewDescProduto.text = "Desc: "+(produto?.desc_produto ?: "")
+                textViewNomeFornecedor.text = "Sup: "+(produto?.id_fornecedor?.nome_fornecedor ?: "")
+
             }
 
         fun seleciona() {
