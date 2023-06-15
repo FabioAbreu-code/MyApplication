@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
             is EliminarProdutoFragment -> (fragment as EliminarProdutoFragment).processaOpcaoMenu(item)
             is ListaFornecedoresFragment -> (fragment as ListaFornecedoresFragment).processaOpcaoMenu(item)
             is NovoFornecedorFragment -> (fragment as NovoFornecedorFragment).processaOpcaoMenu(item)
+            is EliminarFornecedorFragment -> (fragment as EliminarFornecedorFragment).processaOpcaoMenu(item)
 
 
             else -> false

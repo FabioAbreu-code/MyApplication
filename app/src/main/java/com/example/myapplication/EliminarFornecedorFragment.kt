@@ -1,12 +1,15 @@
 package com.example.myapplication
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.databinding.FragmentEliminarFornecedorBinding
+import com.google.android.material.snackbar.Snackbar
 
 class EliminarFornecedorFragment : Fragment() {
     private lateinit var fornecedores: Fornecedores
@@ -65,5 +68,14 @@ class EliminarFornecedorFragment : Fragment() {
     }
 
     private fun eliminar() {
+        val enderecoFornecedor = Uri.withAppendedPath(ProdutoContentProvider.ENDERECO_FORNECEDOR, fornecedores.id.toString())
+        val numFornecedoresEliminados = requireActivity().contentResolver.delete(enderecoFornecedor, null, null)
+
+        if (numFornecedoresEliminados == 1) {
+            Toast.makeText(requireContext(), getString(R.string.fornecedor_eliminado_com_sucesso), Toast.LENGTH_LONG).show()
+            voltaListaFornecedores()
+        } else {
+            Snackbar.make(binding.textViewNomeFornecedor, getString(R.string.erro_eliminar_fornecedor), Snackbar.LENGTH_INDEFINITE)
+        }
     }
 }

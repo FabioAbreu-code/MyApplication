@@ -71,5 +71,7 @@
     <string name="contacto_fornecedor_obrigatorio">contacto fornecedor obrigatorio</string>
     <string name="erro_guardar_fornecedor">erro guardar fornecedor</string>
     <string name="fornecedor_guardado_com_sucesso">fornecedor guardado com sucesso</string>
+    <string name="fornecedor_eliminado_com_sucesso">fornecedor eliminado com sucesso</string>
+    <string name="erro_eliminar_fornecedor">erro eliminar fornecedor</string>
 
 </resources>
