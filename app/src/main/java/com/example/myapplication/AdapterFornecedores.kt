@@ -85,7 +85,7 @@ class AdapterFornecedores(val fragment: ListaFornecedoresFragment) : RecyclerVie
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolderFornecedor, position: Int) {
-        cursor!!.move(position)
+        cursor!!.moveToPosition(position)
         holder.fornecedor = Fornecedores.fromCursor(cursor!!)
     }
 }
