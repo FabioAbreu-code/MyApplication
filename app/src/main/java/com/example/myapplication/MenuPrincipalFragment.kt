@@ -40,6 +40,10 @@ class MenuPrincipalFragment : Fragment() {
             findNavController().navigate(R.id.action_MenuPrincipalFragment_to_listaProdutosFragment)
         }
 
+        binding.buttonFornecedores.setOnClickListener {
+            findNavController().navigate(R.id.action_MenuPrincipalFragment_to_listaFornecedoresFragment)
+        }
+
         val activity = activity as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_main
