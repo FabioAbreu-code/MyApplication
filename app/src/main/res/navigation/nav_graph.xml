@@ -80,5 +80,17 @@
         <action
             android:id="@+id/action_listaFornecedoresFragment_to_MenuPrincipalFragment"
             app:destination="@id/MenuPrincipalFragment" />
+        <action
+            android:id="@+id/action_listaFornecedoresFragment_to_novoFornecedorFragment"
+            app:destination="@id/novoFornecedorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/novoFornecedorFragment"
+        android:name="com.example.myapplication.NovoFornecedorFragment"
+        android:label="fragment_novo_fornecedor"
+        tools:layout="@layout/fragment_novo_fornecedor" >
+        <action
+            android:id="@+id/action_novoFornecedorFragment_to_listaFornecedoresFragment"
+            app:destination="@id/listaFornecedoresFragment" />
     </fragment>
 </navigation>
