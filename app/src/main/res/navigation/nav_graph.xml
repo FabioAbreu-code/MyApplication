@@ -81,19 +81,19 @@
             android:id="@+id/action_listaFornecedoresFragment_to_MenuPrincipalFragment"
             app:destination="@id/MenuPrincipalFragment" />
         <action
-            android:id="@+id/action_listaFornecedoresFragment_to_novoFornecedorFragment"
-            app:destination="@id/novoFornecedorFragment" />
+            android:id="@+id/action_listaFornecedoresFragment_to_editarFornecedorFragment"
+            app:destination="@id/editarFornecedorFragment" />
         <action
             android:id="@+id/action_listaFornecedoresFragment_to_eliminarFornecedorFragment"
             app:destination="@id/eliminarFornecedorFragment" />
     </fragment>
     <fragment
-        android:id="@+id/novoFornecedorFragment"
-        android:name="com.example.myapplication.NovoFornecedorFragment"
-        android:label="fragment_novo_fornecedor"
-        tools:layout="@layout/fragment_novo_fornecedor" >
+        android:id="@+id/editarFornecedorFragment"
+        android:name="com.example.myapplication.EditarFornecedorFragment"
+        android:label="fragment_editar_fornecedor"
+        tools:layout="@layout/fragment_editar_fornecedor" >
         <action
-            android:id="@+id/action_novoFornecedorFragment_to_listaFornecedoresFragment"
+            android:id="@+id/action_editarFornecedorFragment_to_listaFornecedoresFragment"
             app:destination="@id/listaFornecedoresFragment" />
     </fragment>
     <fragment

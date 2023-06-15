@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.myapplication.databinding.FragmentNovoFornecedorBinding
+import com.example.myapplication.databinding.FragmentEditarFornecedorBinding
 
 
-class NovoFornecedorFragment : Fragment() {
-    private var _binding: FragmentNovoFornecedorBinding? = null
+class EditarFornecedorFragment : Fragment() {
+    private var _binding: FragmentEditarFornecedorBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -23,7 +23,7 @@ class NovoFornecedorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentNovoFornecedorBinding.inflate(inflater, container, false)
+        _binding = FragmentEditarFornecedorBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -56,7 +56,7 @@ class NovoFornecedorFragment : Fragment() {
     }
 
     private fun voltaListaFornecedores() {
-        findNavController().navigate(R.id.action_novoFornecedorFragment_to_listaFornecedoresFragment)
+        findNavController().navigate(R.id.action_editarFornecedorFragment_to_listaFornecedoresFragment)
     }
 
     private fun guardar() {

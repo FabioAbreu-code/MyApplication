@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             is EditarProdutoFragment2 -> (fragment as EditarProdutoFragment2).processaOpcaoMenu(item)
             is EliminarProdutoFragment -> (fragment as EliminarProdutoFragment).processaOpcaoMenu(item)
             is ListaFornecedoresFragment -> (fragment as ListaFornecedoresFragment).processaOpcaoMenu(item)
-            is NovoFornecedorFragment -> (fragment as NovoFornecedorFragment).processaOpcaoMenu(item)
+            is EditarFornecedorFragment -> (fragment as EditarFornecedorFragment).processaOpcaoMenu(item)
             is EliminarFornecedorFragment -> (fragment as EliminarFornecedorFragment).processaOpcaoMenu(item)
 
 
