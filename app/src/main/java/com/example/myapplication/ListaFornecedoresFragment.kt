@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.FragmentListaFornecedoresBinding
 
@@ -186,6 +187,6 @@ class ListaFornecedoresFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
     }
 
     private fun adicionaFornecedor() {
-
+        findNavController().navigate(R.id.action_listaFornecedoresFragment_to_novoFornecedorFragment)
     }
 }
