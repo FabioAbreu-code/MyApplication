@@ -38,6 +38,10 @@ Fábio Abreu
     <string name="editar_produto_label">editar produto label</string>
     <string name="nome_do_fornecedor">Nome do Fornecedor</string>
     <string name="contacto_do_fornecedor">Contacto do Fornecedor</string>
+    <string name="nome_do_fornecedor_obrigatorio">nome do fornecedor obrigatorio</string>
+    <string name="contacto_fornecedor_obrigatorio">contacto fornecedor obrigatorio</string>
+    <string name="erro_guardar_fornecedor">erro guardar fornecedor</string>
+    <string name="fornecedor_guardado_com_sucesso">fornecedor guardado com sucesso</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
