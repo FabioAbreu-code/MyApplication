@@ -12,8 +12,8 @@ class AdapterFornecedores(val fragment: ListaFornecedoresFragment) : RecyclerVie
             field = value
             notifyDataSetChanged()
         }
-    inner class ViewHolderFornecedor(itemView: View) : ViewHolder(itemView) {
-
+    inner class ViewHolderFornecedor(contentor: View) : ViewHolder(contentor) {
+        internal var fornecedor: Fornecedores? = null
     }
 
     /**
@@ -76,6 +76,7 @@ class AdapterFornecedores(val fragment: ListaFornecedoresFragment) : RecyclerVie
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolderFornecedor, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.move(position)
+        holder.fornecedor = Fornecedores.fromCursor(cursor!!)
     }
 }
