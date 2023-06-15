@@ -10,7 +10,7 @@ import org.junit.runner.RunWith
 
 import org.junit.Assert.*
 import org.junit.Before
-import java.util.Calendar
+
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -39,7 +39,7 @@ class BdInstrumentedTest {
         return openHelper.writableDatabase
 
     }
-
+    /*
     private fun insereProduto(
         bd: SQLiteDatabase,
         produtos: Produtos
@@ -55,25 +55,191 @@ class BdInstrumentedTest {
         stock.id = TabelaStock(bd).insere(stock.toContentValues())
         assertNotEquals(-1, stock.id)
     }
+    */
+    @Test
+    fun consegueInserirFornecedor() {
+        val bd = getWritableDatabase()
 
-    private fun insereFornecedor(
-        bd: SQLiteDatabase,
-        fornecedores: Fornecedores
-    ) {
-        fornecedores.id = TabelaFornecedor(bd).insere(fornecedores.toContentValues())
-        assertNotEquals(-1, fornecedores.id)
+        val fornecedores = Fornecedores("Luso","935 635 051")
+        insereFornecedor(bd, fornecedores)
+
     }
 
     @Test
-    fun consegueInserirFornecedor() {
-        val openHelper = BdStockOpenHelper(getAppContext())
-        val bd = openHelper.writableDatabase
+    fun consegueInserirProduto2() {
+        val bd = getWritableDatabase()
 
-        val fornecedores = Fornecedores("Compal","Rua Dr. António João Eusébio, nº 24, 2790-179 Carnaxide","808 200 232")
-        val id = TabelaFornecedor(bd).insere(fornecedores.toContentValues())
-        assertNotEquals(-1, id)
+        val fornecedores = Fornecedores("Compal","940 840 481")
+        insereFornecedor(bd, fornecedores)
+
+        val produto = Produtos2("Néctar Pêssego 1lt","Uma vez aberto conservar no frigorífico.",fornecedores.id)
+        insereProdutos2(bd, produto)
+
     }
 
+    @Test
+    fun consegueLerFornecedores() {
+        val bd = getWritableDatabase()
+
+        val fornecedor = Fornecedores("Sumol","950 668 903")
+        insereFornecedor(bd, fornecedor)
+
+        val fornecedor2 = Fornecedores("Parmalat","935 867 264")
+        insereFornecedor(bd, fornecedor2)
+
+        val tabelaFornecedores = TabelaFornecedores(bd)
+
+        val cursor = tabelaFornecedores.consulta(
+            TabelaFornecedores.CAMPOS,
+            "${BaseColumns._ID}=?",
+            arrayOf(fornecedor2.id.toString()),
+            null,
+            null,
+            null
+        )
+
+        assert(cursor.moveToNext())
+
+        val fornecedoresBD = Fornecedores.fromCursor(cursor)
+
+        assertEquals(fornecedor2, fornecedoresBD)
+
+        val cursorTodosFornecedores = tabelaFornecedores.consulta(
+            TabelaFornecedores.CAMPOS,
+            null, null, null, null,
+            TabelaFornecedores.NOME_FORNECEDOR
+        )
+
+        assert(cursorTodosFornecedores.count > 1)
+    }
+
+    @Test
+    fun consegueLerProdutos2() {
+        val bd = getWritableDatabase()
+
+        val fornecedor1 = Fornecedores("Matutano","972 138 453")
+        insereFornecedor(bd, fornecedor1)
+
+        val produto1 = Produtos2("Amendoim no Forno emb.200g","Conservar em local fresco e seco, ao abrigo da luz solar. Fechar bem a embalagem após cada utilização.",fornecedor1.id)
+        insereProdutos2(bd, produto1)
+
+        val produto2 = Produtos2("Pistachos Tostados no Forno MATUTANO emb.70g","Conservar em local fresco e seco, ao abrigo da luz solar. Fechar bem a embalagem após cada utilização.", fornecedor1.id)
+        insereProdutos2(bd, produto2)
+
+        val tabelaProduto2 = Tabela2Produtos(bd)
+
+        val cursor = tabelaProduto2.consulta(
+            Tabela2Produtos.CAMPOS,
+            "${BaseColumns._ID}=?",
+            arrayOf(produto1.id.toString()),
+            null,
+            null,
+            null
+        )
+
+        assert(cursor.moveToNext())
+
+        val produto2BD = Produtos2.fromCursor(cursor)
+
+        assertEquals(produto1, produto2BD)
+
+        val cursorTodosProduto2 = tabelaProduto2.consulta(
+            Tabela2Produtos.CAMPOS,
+            null, null, null, null,
+            Tabela2Produtos.CAMPO_NOME_DO_PRODUTO
+        )
+
+        assert(cursorTodosProduto2.count > 1)
+    }
+
+    @Test
+    fun consegueAlterarFornecedores() {
+        val bd = getWritableDatabase()
+
+        val fornecedores = Fornecedores("Sica","943 378 092")
+        insereFornecedor(bd, fornecedores)
+
+        fornecedores.nome_fornecedor = "Sical"
+        fornecedores.contacto_fornecedor = "943 378 093"
+
+        val registosAlterados = TabelaFornecedores(bd).altera(
+            fornecedores.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf(fornecedores.id.toString())
+        )
+
+        assertEquals(1, registosAlterados)
+    }
+
+    @Test
+    fun consegueAlterarProduto2() {
+        val bd = getWritableDatabase()
+
+        val fornecedor1 = Fornecedores("Parmalat","980 261 863")
+        insereFornecedor(bd, fornecedor1)
+
+        val fornecedor2 = Fornecedores("Super Bock","926 848 648")
+        insereFornecedor(bd, fornecedor2)
+
+        val produto = Produtos2("Nata para Culinária emb.200ml", "Conservar à temperatura ambiente, em local fresco e seco. Após abertura, conservar no frigorífico e consumir no prazo de 4 dias.", fornecedor1.id)
+        insereProdutos2(bd, produto)
+
+        produto.nome_produto = "Natas para Culinária emb.1l"
+        produto.desc_produto = "Conservar à temperatura ambiente, em local fresco e seco. Após abertura, conservar no frigorífico e consumir no prazo de 3 dias."
+
+        val registosAlterados = Tabela2Produtos(bd).altera(
+            produto.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf(produto.id.toString())
+        )
+
+        assertEquals(1, registosAlterados)
+    }
+
+
+    @Test
+    fun consegueApagarFornecedores() {
+        val bd = getWritableDatabase()
+
+        val fornecedores = Fornecedores("Paladin","982 747 382")
+        insereFornecedor(bd, fornecedores)
+
+        val registosEliminados = TabelaFornecedores(bd).elimina(
+            "${BaseColumns._ID}=?",
+            arrayOf(fornecedores.id.toString())
+        )
+
+        assertEquals(1, registosEliminados)
+    }
+
+    @Test
+    fun consegueApagarProdutos() {
+        val bd = getWritableDatabase()
+
+        val fornecedor = Fornecedores("Guloso","918 814 769")
+        insereFornecedor(bd, fornecedor)
+
+        val produto = Produtos2("Polpa de Tomate emb. 500gr", "Depois de aberto colocar no frigorífico e consumir o mais breve possível",fornecedor.id)
+        insereProdutos2(bd, produto)
+
+        val registosEliminados = Tabela2Produtos(bd).elimina(
+            "${BaseColumns._ID}=?",
+            arrayOf(produto.id.toString())
+        )
+
+        assertEquals(1, registosEliminados)
+    }
+    private fun insereProdutos2(bd: SQLiteDatabase, produto2: Produtos2) {
+        produto2.id = Tabela2Produtos(bd).insere(produto2.toContentValues())
+        assertNotEquals(-1, produto2.id)
+    }
+
+    private fun insereFornecedor(bd: SQLiteDatabase, fornecedores: Fornecedores) {
+        fornecedores.id = TabelaFornecedores(bd).insere(fornecedores.toContentValues())
+        assertNotEquals(-1, fornecedores.id)
+    }
+
+    /*
     @Test
     fun consegueInserirProdutos() {
         val bd = getWritableDatabase()
@@ -289,4 +455,5 @@ class BdInstrumentedTest {
 
         db.close()
     }
+     */
 }

@@ -4,35 +4,31 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
 
-class Fornecedores(
-    var nome: String,
-    var endereco: String,
-    var contacto: String,
+data class Fornecedores(
+    var nome_fornecedor: String,
+    var contacto_fornecedor: String,
     var id: Long = -1
-){
-    fun toContentValues(): ContentValues {
+) {
+    fun toContentValues() : ContentValues {
         val valores = ContentValues()
 
-        valores.put(TabelaFornecedor.CAMPO_NOME_FORNECEDOR, nome)
-        valores.put(TabelaFornecedor.CAMPO_ENDERECO, endereco)
-        valores.put(TabelaFornecedor.CAMPO_CONTACTO, contacto)
+        valores.put(TabelaFornecedores.NOME_FORNECEDOR, nome_fornecedor)
+        valores.put(TabelaFornecedores.CONTACTO_FORNECEDOR, contacto_fornecedor)
 
         return valores
     }
 
     companion object {
-        fun fromCursor(cursor: Cursor): Fornecedores {
+        fun fromCursor(cursor: Cursor) : Fornecedores {
             val posId = cursor.getColumnIndex(BaseColumns._ID)
-            val posNome = cursor.getColumnIndex(TabelaFornecedor.CAMPO_NOME_FORNECEDOR)
-            val posEndereco = cursor.getColumnIndex(TabelaFornecedor.CAMPO_ENDERECO)
-            val posContacto = cursor.getColumnIndex(TabelaFornecedor.CAMPO_CONTACTO)
+            val posNomeFornecedor = cursor.getColumnIndex(TabelaFornecedores.NOME_FORNECEDOR)
+            val posContactoFornecedor = cursor.getColumnIndex(TabelaFornecedores.CONTACTO_FORNECEDOR)
 
             val id = cursor.getLong(posId)
-            val Nome = cursor.getString(posNome)
-            val Endereco = cursor.getString(posEndereco)
-            val Contacto = cursor.getString(posContacto)
+            val NomeFornecedor = cursor.getString(posNomeFornecedor)
+            val ContactoFornecedor = cursor.getString(posContactoFornecedor)
 
-            return Fornecedores(Nome, Endereco, Contacto, id)
+            return Fornecedores(NomeFornecedor, ContactoFornecedor, id)
         }
     }
 }

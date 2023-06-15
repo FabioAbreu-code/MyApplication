@@ -14,10 +14,10 @@ class BdStockOpenHelper(context: Context?)
      */
     override fun onCreate(db: SQLiteDatabase?) {
         requireNotNull(db)
-        TabelaProdutos(db).cria()
-        TabelaStock(db).cria()
-        TabelaFornecedor(db).cria()
-
+        //TabelaProdutos(db).cria()
+        //TabelaStock(db).cria()
+        TabelaFornecedores(db).cria()
+        Tabela2Produtos(db).cria()
     }
 
     /**
