@@ -33,6 +33,7 @@ class AdapterFornecedores(val fragment: ListaFornecedoresFragment) : RecyclerVie
 
         fun seleciona() {
             viewHolderSeleccionado = this
+            fragment.fornecedorSelecionado = fornecedor
             itemView.setBackgroundResource(R.color.item_selected)
         }
 

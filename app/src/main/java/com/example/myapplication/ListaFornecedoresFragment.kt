@@ -26,6 +26,8 @@ class ListaFornecedoresFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    var fornecedorSelecionado : Fornecedores? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
