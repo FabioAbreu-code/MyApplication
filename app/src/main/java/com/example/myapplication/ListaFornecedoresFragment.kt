@@ -179,7 +179,8 @@ class ListaFornecedoresFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
     }
 
     private fun eliminarFornecedor() {
-
+        val acao = ListaFornecedoresFragmentDirections.actionListaFornecedoresFragmentToEliminarFornecedorFragment(fornecedorSelecionado!!)
+        findNavController().navigate(acao)
     }
 
     private fun editarFornecedor() {
