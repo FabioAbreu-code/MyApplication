@@ -64,5 +64,6 @@
     <string name="produto_guardado_com_sucesso">produto guardado com sucesso</string>
     <string name="producto_eliminado_com_sucesso">producto eliminado com sucesso</string>
     <string name="erro_eliminar_produto">erro eliminar produto</string>
+    <string name="editar_produto_label">editar produto label</string>
 
 </resources>

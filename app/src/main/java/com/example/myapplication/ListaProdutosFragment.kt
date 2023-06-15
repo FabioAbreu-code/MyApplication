@@ -18,11 +18,7 @@ import com.example.myapplication.databinding.FragmentListaProdutosBinding
 private const val ID_LOADER_PRODUTOS2 = 0
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ListaProdutosFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class ListaProdutosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private var _binding: FragmentListaProdutosBinding? = null
 
@@ -49,7 +45,7 @@ class ListaProdutosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentListaProdutosBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -154,7 +150,9 @@ class ListaProdutosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
      * @param loader The Loader that is being reset.
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        adapterProdutos!!.cursor = null
+        if (adapterProdutos != null) {
+            adapterProdutos!!.cursor = null
+        }
     }
 
 
@@ -182,10 +180,12 @@ class ListaProdutosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     }
 
     private fun editarProduto() {
-
+        val acao = ListaProdutosFragmentDirections.actionListaProdutosFragmentToEditarProdutoFragment2(produtoSelecionado!!)
+        findNavController().navigate(acao)
     }
 
     private fun adicionaProduto() {
-        findNavController().navigate(R.id.action_listaProdutosFragment_to_novoProdutoFragment2)
+        val acao = ListaProdutosFragmentDirections.actionListaProdutosFragmentToEditarProdutoFragment2(null)
+        findNavController().navigate(acao)
     }
 }

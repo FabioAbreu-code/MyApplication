@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -20,6 +21,7 @@ import com.example.myapplication.databinding.FragmentEditarProduto2Binding
 private const val ID_LOADER_FORNECEDORES = 0
 
 class EditarProdutoFragment2 : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+    private var produtos2: Produtos2?= null
     private var _binding: FragmentEditarProduto2Binding? = null
 
     // This property is only valid between onCreateView and
@@ -29,7 +31,7 @@ class EditarProdutoFragment2 : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentEditarProduto2Binding.inflate(inflater, container, false)
         return binding.root
@@ -45,6 +47,19 @@ class EditarProdutoFragment2 : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
         val activity = activity as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_guardar_cancelar
+
+
+        val produtos2 = EditarProdutoFragment2Args.fromBundle(requireArguments()).produto2
+
+        if (produtos2 != null) {
+            activity.atualizaNomeProduto(R.string.editar_produto_label)
+
+            binding.editTextNomeProduto.setText(produtos2.nome_produto)
+            binding.editTextDesProduto.setText(produtos2.desc_produto)
+
+        }
+
+        this.produtos2 = produtos2
     }
 
     override fun onDestroyView() {
@@ -67,7 +82,7 @@ class EditarProdutoFragment2 : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
     }
 
     private fun voltaListaProdutos() {
-        findNavController().navigate(R.id.action_novoProdutoFragment2_to_listaProdutosFragment)
+        findNavController().navigate(R.id.action_editarProdutoFragment2_to_listaProdutosFragment)
     }
 
     private fun guardar() {
@@ -88,16 +103,44 @@ class EditarProdutoFragment2 : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
         val fornecedorId = binding.spinnerFornecedores.selectedItemId
 
 
-        val produto = Produtos2(
-            nome_produto,
-            desc_produto,
-            Fornecedores("?","?", fornecedorId),
+        if (produtos2 == null) {
+            val produto = Produtos2(
+                nome_produto,
+                desc_produto,
+                Fornecedores("?", "?", fornecedorId),
 
-        )
+            )
+
+            insereProduto(produto)
+        } else {
+            val produtos2 = produtos2!!
+            produtos2.nome_produto = nome_produto
+            produtos2.desc_produto = desc_produto
+            produtos2.id_fornecedor = Fornecedores("?","?", fornecedorId)
+
+            alteraProduto(produtos2)
+        }
+    }
+
+    private fun alteraProduto(produtos2: Produtos2) {
+        val enderecoProdutos2 = Uri.withAppendedPath(ProdutoContentProvider.ENDERECO_PRODUTO2, produtos2.id.toString())
+        val produtosAlterados = requireActivity().contentResolver.update(enderecoProdutos2, produtos2.toContentValues(), null, null)
+
+        if (produtosAlterados == 1) {
+            Toast.makeText(requireContext(), R.string.produto_guardado_com_sucesso, Toast.LENGTH_LONG).show()
+            voltaListaProdutos()
+        } else {
+            binding.editTextNomeProduto.error = getString(R.string.erro_guardar_produto)
+        }
+    }
+
+    private fun insereProduto(
+        produtos2: Produtos2
+    ) {
 
         val id = requireActivity().contentResolver.insert(
             ProdutoContentProvider.ENDERECO_PRODUTO2,
-            produto.toContentValues()
+            produtos2.toContentValues()
         )
 
         if (id == null) {
@@ -105,7 +148,11 @@ class EditarProdutoFragment2 : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
             return
         }
 
-        Toast.makeText(requireContext(), getString(R.string.produto_guardado_com_sucesso), Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            requireContext(),
+            getString(R.string.produto_guardado_com_sucesso),
+            Toast.LENGTH_SHORT
+        ).show()
         voltaListaProdutos()
     }
 
@@ -140,7 +187,9 @@ class EditarProdutoFragment2 : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
      * @param loader The Loader that is being reset.
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        binding.spinnerFornecedores.adapter = null
+        if (_binding != null) {
+            binding.spinnerFornecedores.adapter = null
+        }
     }
 
     /**
@@ -200,5 +249,21 @@ class EditarProdutoFragment2 : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
             intArrayOf(android.R.id.text1),
             0
         )
+
+        mostraProdutoSelecionadoSpinner()
+    }
+
+    private fun mostraProdutoSelecionadoSpinner() {
+        if (produtos2 == null) return
+
+        val idFornecedor = produtos2!!.id_fornecedor.id
+
+        val ultimoFornecedor = binding.spinnerFornecedores.count - 1
+        for (i in 0..ultimoFornecedor) {
+            if (idFornecedor == binding.spinnerFornecedores.getItemIdAtPosition(i)) {
+                binding.spinnerFornecedores.setSelection(i)
+                return
+            }
+        }
     }
 }
