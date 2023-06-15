@@ -24,7 +24,7 @@ class BdInstrumentedTest {
 
     @Before
     fun apagaBaseDados(){
-        getAppContext().deleteDatabase(BdStockOpenHelper.NOME_BASE_DADOS)
+        //getAppContext().deleteDatabase(BdStockOpenHelper.NOME_BASE_DADOS)
     }
 
     @Test
@@ -72,7 +72,7 @@ class BdInstrumentedTest {
         val fornecedores = Fornecedores("Compal","940 840 481")
         insereFornecedor(bd, fornecedores)
 
-        val produto = Produtos2("Néctar Pêssego 1lt","Uma vez aberto conservar no frigorífico.",fornecedores.id)
+        val produto = Produtos2("Néctar Pêssego 1lt","Uma vez aberto conservar no frigorífico.",fornecedores)
         insereProdutos2(bd, produto)
 
     }
@@ -120,10 +120,10 @@ class BdInstrumentedTest {
         val fornecedor1 = Fornecedores("Matutano","972 138 453")
         insereFornecedor(bd, fornecedor1)
 
-        val produto1 = Produtos2("Amendoim no Forno emb.200g","Conservar em local fresco e seco, ao abrigo da luz solar. Fechar bem a embalagem após cada utilização.",fornecedor1.id)
+        val produto1 = Produtos2("Amendoim no Forno emb.200g","Conservar em local fresco e seco, ao abrigo da luz solar. Fechar bem a embalagem após cada utilização.",fornecedor1)
         insereProdutos2(bd, produto1)
 
-        val produto2 = Produtos2("Pistachos Tostados no Forno MATUTANO emb.70g","Conservar em local fresco e seco, ao abrigo da luz solar. Fechar bem a embalagem após cada utilização.", fornecedor1.id)
+        val produto2 = Produtos2("Pistachos Tostados no Forno MATUTANO emb.70g","Conservar em local fresco e seco, ao abrigo da luz solar. Fechar bem a embalagem após cada utilização.", fornecedor1)
         insereProdutos2(bd, produto2)
 
         val tabelaProduto2 = Tabela2Produtos(bd)
@@ -181,7 +181,7 @@ class BdInstrumentedTest {
         val fornecedor2 = Fornecedores("Super Bock","926 848 648")
         insereFornecedor(bd, fornecedor2)
 
-        val produto = Produtos2("Nata para Culinária emb.200ml", "Conservar à temperatura ambiente, em local fresco e seco. Após abertura, conservar no frigorífico e consumir no prazo de 4 dias.", fornecedor1.id)
+        val produto = Produtos2("Nata para Culinária emb.200ml", "Conservar à temperatura ambiente, em local fresco e seco. Após abertura, conservar no frigorífico e consumir no prazo de 4 dias.", fornecedor1)
         insereProdutos2(bd, produto)
 
         produto.nome_produto = "Natas para Culinária emb.1l"
@@ -219,7 +219,7 @@ class BdInstrumentedTest {
         val fornecedor = Fornecedores("Guloso","918 814 769")
         insereFornecedor(bd, fornecedor)
 
-        val produto = Produtos2("Polpa de Tomate emb. 500gr", "Depois de aberto colocar no frigorífico e consumir o mais breve possível",fornecedor.id)
+        val produto = Produtos2("Polpa de Tomate emb. 500gr", "Depois de aberto colocar no frigorífico e consumir o mais breve possível",fornecedor)
         insereProdutos2(bd, produto)
 
         val registosEliminados = Tabela2Produtos(bd).elimina(

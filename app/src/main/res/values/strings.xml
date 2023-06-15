@@ -13,8 +13,8 @@ Exercício Programação Avançada\n
 Fábio Abreu
     </string>
     <string name="about">ABOUT</string>
-    <string name="products">HOUSEHOLD CONSUMER GOODS</string>
-    <string name="stock">STOCK</string>
+    <string name="products">PRODUCTS</string>
+    <string name="fornecedores">SUPPLIERS</string>
     <string name="lista_produtos_label">Products</string>
     <string name="adicionar">Add</string>
     <string name="editar">Edit</string>
@@ -27,6 +27,8 @@ Fábio Abreu
     <string name="Stock_do_Produto">Stock</string>
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

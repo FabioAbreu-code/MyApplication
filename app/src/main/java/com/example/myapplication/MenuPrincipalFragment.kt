@@ -36,8 +36,8 @@ class MenuPrincipalFragment : Fragment() {
             findNavController().navigate(R.id.action_MenuPrincipalFragment_to_SobreFragment)
         }
 
-        binding.buttonStock.setOnClickListener {
-            findNavController().navigate(R.id.action_MenuPrincipalFragment_to_ListaProdutosFragment)
+        binding.buttonProdutos.setOnClickListener {
+            findNavController().navigate(R.id.action_MenuPrincipalFragment_to_listaProdutosFragment)
         }
 
         val activity = activity as MainActivity

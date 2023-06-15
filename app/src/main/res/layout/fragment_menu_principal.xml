@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:backgroundTint="@color/orange"
-            android:text="@string/stock"
+            android:text="@string/fornecedores"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/button_produtos"
             app:layout_constraintStart_toStartOf="@+id/button_produtos"

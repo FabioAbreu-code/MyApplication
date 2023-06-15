@@ -10,6 +10,7 @@ class TabelaFornecedores (db: SQLiteDatabase) : TabelaBD(db, NOME_TABELA) {
 
     companion object {
         const val NOME_TABELA = "fornecedor"
+        const val CAMPO_ID = "$NOME_TABELA.${BaseColumns._ID}"
 
         const val NOME_FORNECEDOR = "nome_fornecedor"
         const val CONTACTO_FORNECEDOR = "contacto_fornecedor"

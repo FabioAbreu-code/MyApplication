@@ -43,8 +43,8 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="about">Sobre</string>
-    <string name="products">Itens De Consumo Doméstico</string>
-    <string name="stock">Stock</string>
+    <string name="products">Produtos</string>
+    <string name="fornecedores">Fornecedores</string>
     <string name="lista_produtos_label">Produtos</string>
     <string name="adicionar">Adicionar</string>
     <string name="editar">Editar</string>
@@ -57,5 +57,6 @@
     <string name="Stock_do_Produto">Stock</string>
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
