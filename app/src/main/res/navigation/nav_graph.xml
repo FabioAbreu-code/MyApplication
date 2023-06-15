@@ -83,6 +83,9 @@
         <action
             android:id="@+id/action_listaFornecedoresFragment_to_novoFornecedorFragment"
             app:destination="@id/novoFornecedorFragment" />
+        <action
+            android:id="@+id/action_listaFornecedoresFragment_to_eliminarFornecedorFragment"
+            app:destination="@id/eliminarFornecedorFragment" />
     </fragment>
     <fragment
         android:id="@+id/novoFornecedorFragment"
@@ -91,6 +94,15 @@
         tools:layout="@layout/fragment_novo_fornecedor" >
         <action
             android:id="@+id/action_novoFornecedorFragment_to_listaFornecedoresFragment"
+            app:destination="@id/listaFornecedoresFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eliminarFornecedorFragment"
+        android:name="com.example.myapplication.EliminarFornecedorFragment"
+        android:label="fragment_eliminar_fornecedor"
+        tools:layout="@layout/fragment_eliminar_fornecedor" >
+        <action
+            android:id="@+id/action_eliminarFornecedorFragment_to_listaFornecedoresFragment"
             app:destination="@id/listaFornecedoresFragment" />
     </fragment>
 </navigation>
